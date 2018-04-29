@@ -50,12 +50,14 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 			```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
 			
 			```sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)```
+			
+		4. Reboot
 				
-		4. Install EPEL
+		5. Install EPEL
 				
 			```sudo yum install epel-release```
 			
-		5. Install DKMS
+		6. Install DKMS
 				
 			```sudo yum install dkms```
 				
