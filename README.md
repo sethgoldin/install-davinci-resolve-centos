@@ -43,9 +43,10 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 			
 			```options nouveau modeset=0```
 				
-		3. Regenerate the kernel `initramfs`:
+		3. Back up and regenerate the kernel `initramfs`:
 				
 			```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
+			
 			```dracut /boot/initramfs-$(uname -r).img $(uname -r)```
 				
 		4. Install EPEL
