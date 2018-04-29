@@ -47,7 +47,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 				
 			```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
 			
-			```dracut /boot/initramfs-$(uname -r).img $(uname -r)```
+			```sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)```
 				
 		4. Install EPEL
 				
