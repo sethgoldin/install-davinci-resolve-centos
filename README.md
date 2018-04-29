@@ -2,7 +2,7 @@
 
 This is a guide on how to install  DaVinci resolve on a generic, upstream build of CentOS. Because software is constantly changing, document is hosted on GitHub Pages so that changes can be made as necessary.
 
-These particular instructions are tailored to an HP Z8 G4 workstation with a GTX 1080 Ti installed.
+These particular instructions are tailored to an HP Z8 G4 workstation with a GTX 1080 Ti installed, but the information should be useful for other systems as well.
 
 1. UEFI
 	1. Set to boot to USB drive first
