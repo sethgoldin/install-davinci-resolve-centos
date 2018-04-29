@@ -74,7 +74,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 			
 		13. Run it:
 		
-			```sudo ./chmod 755 <NVIDIA-Linux-x86_64-whateverversion>.run```
+			```sudo ./<NVIDIA-Linux-x86_64-whateverversion>.run```
 			
 		14. Register the kernel module with DKMS, so that a new module can be built later if a different kernel is installed
 		15. Install the 32-bit compatibility libraries--better safe than sorry
