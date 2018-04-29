@@ -23,7 +23,9 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		```sudo yum install gcc```
 	2. Install kernel headers
 	
-		```sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)```
+		```sudo yum install kernel-devel-<version>```
+		
+		Let bash automatically complete with the correct, current version.
 	3. Download the driver from [NVIDIA's site](http://www.nvidia.com/drivers)
 	4. Blacklist the Nouveau driver:
 		
