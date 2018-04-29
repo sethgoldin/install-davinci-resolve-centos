@@ -40,6 +40,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		2. Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
 				
 			```blacklist nouveau```
+			
 			```options nouveau modeset=0```
 				
 		3. Regenerate the kernel `initramfs`:
