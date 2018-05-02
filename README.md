@@ -56,7 +56,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 				
 	5. Install EPEL
 				
-			```sudo yum install epel-release```
+			```sudo yum install epel-release.noarch```
 			
 	6. Install DKMS
 				
