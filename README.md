@@ -100,23 +100,39 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		
 		```tar xvfz /path/to/downloaded/driver/location/Blackmagic_Desktop_Video_Linux_<driver_version>.tar.gz```
 		
-	5. Install the latest Desktop Video driver. Type:
-
-		```rpm -ivh Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/x86_64/desktopvideo-<driver_version>.x86_64.rpm```
+	5. `cd` into the `rpm` folder, since this is CentOS
+	
+		```cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/yourarchitecture```
 		
-	6. After the installation completes, you should see the terminal prompt. Then, reboot the machine.
-	7. After the machine has rebooted, open a Terminal shell again
-	8. You need to now become the root user. Type:
+	6. Change permissions on the files so that you can execute them:
+	
+		```chmod 755 desktopvideo-<version>.<architecture>.rpm```
+		```chmod 755 desktopvideo-gui<version>.<architecture>.rpm```
+		```chmod 755 mediaexpress-<version>.<architecture>.rpm```
+	
+	7. Install the latest Desktop Video driver, GUI, and Media Express. Type:
+
+		```rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
+		```rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
+		```rpm -ivh mediaexpress-<version>.x86_64.rpm```
+		
+			1. The installer might tell you you need `libGLU.so.1`, so install:
+				
+				```sudo yum install libGLU```
+		
+	8. After the installation completes, you should see the terminal prompt. Then, reboot the machine.
+	9. After the machine has rebooted, open a Terminal shell again
+	10. You need to now become the root user. Type:
 		
 		```su -```
 		
 		When prompted, please enter your 'root' user's password
 		
-	9. You will now need to update the firmware on your DeckLink card. Type:
+	11. You might need to update the firmware on your DeckLink card. Type:
 		
 		```BlackmagicFirmwareUpdater update 0```
 		
-	10.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
+	12.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 	
 8. Install DaVinci Resolve
 	1. Download `DaVinci_Resolve_Studio_14.3_Linux.zip` (if you have a DaVinci Resolve license dongle) or `DaVinci_Resolve_14.3_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
@@ -126,4 +142,6 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		```su -```
 		
 		When prompted, please enter your 'root' user's password.
-	4. 
+	4. Resolve might not launch--if you run it via the command-line from `/opt/resolve/bin/`, you can see why it might not be able to launch. It might be complaining about `libpng12.so(1)`, so install:
+		
+		```sudo yum install libpng12```
