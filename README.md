@@ -11,6 +11,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 2. Install CentOS from USB
 	1. Include only GNOME Desktop
 	2. Set up DHCP
+	3. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once you have the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
 3. Reboot
 4. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order, so reboot, and you'll boot to the M.2 SSD with the fresh installation
 	1. Reboot and you'll boot to the M.2 SSD with the fresh installation
