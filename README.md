@@ -39,50 +39,50 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 				
 				```GRUB_CMDLINE_LINUX=“crashkernel=auto rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet rd.driver.blacklist=nouveau nouveau.modeset=0”```
 			
-		2. Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
+			3. Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
 				
-			```blacklist nouveau```
+				```blacklist nouveau```
 			
-			```options nouveau modeset=0```
+				```options nouveau modeset=0```
 				
-		3. Back up and regenerate the kernel `initramfs`:
+			4. Back up and regenerate the kernel `initramfs`:
 				
-			```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
+				```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
 			
-			```sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)```
+				```sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)```
 			
-		4. Reboot
+			4. Reboot
 				
-		5. Install EPEL
+	5. Install EPEL
 				
 			```sudo yum install epel-release```
 			
-		6. Install DKMS
+	6. Install DKMS
 				
 			```sudo yum install dkms```
 				
-		6. Reboot
-		7. Don't log into GNOME
-		8. Switch over to the F2 virtual console: `Ctrl` + `Alt` + `Fn` + `F2`
-		9. Log in
-		10. Stop `gdm`
+	7. Reboot
+	8. Don't log into GNOME
+	9. Switch over to the F2 virtual console: `Ctrl` + `Alt` + `Fn` + `F2`
+	10. Log in
+	11. Stop `gdm`
+	
+		```sudo service gdm stop```
 		
-			```sudo service gdm stop```
+		This might pop you back over to the F1 virtual console, where the GUI normally lives, not populated by a bunch of status indicators scattered across the screen. Pop back over to F2 again.
+		
+	12. Go to the `~/Downloads` folder, or wherever you put the NVIDIA driver
+	13. Change permissions on the driver so that it’s exectuable:
+		
+	```chmod 755 <NVIDIA-Linux-x86_64-whateverversion>.run```
 			
-			This might pop you back over to the F1 virtual console, where the GUI normally lives, not populated by a bunch of status indicators scattered across the screen. Pop back over to F2 again.
+	14. Run it:
 		
-		11. Go to the `~/Downloads` folder, or wherever you put the NVIDIA driver
-		12. Change permissions on the driver so that it’s exectuable:
-		
-			```chmod 755 <NVIDIA-Linux-x86_64-whateverversion>.run```
+		```sudo ./<NVIDIA-Linux-x86_64-whateverversion>.run```
 			
-		13. Run it:
-		
-			```sudo ./<NVIDIA-Linux-x86_64-whateverversion>.run```
-			
-		14. Register the kernel module with DKMS, so that a new module can be built later if a different kernel is installed
-		15. Install the 32-bit compatibility libraries--better safe than sorry
-		16. Opt to have NVIDIA update the `xconfig` file
+	15. Register the kernel module with DKMS, so that a new module can be built later if a different kernel is installed
+	16. Install the 32-bit compatibility libraries--better safe than sorry
+	17. Opt to have NVIDIA update the `xconfig` file
 7. Download and install the latest DeckLink driver
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
 	2. You need to now become the root user. Type:
