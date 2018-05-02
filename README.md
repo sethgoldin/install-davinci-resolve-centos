@@ -64,7 +64,8 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 				
 	7. Reboot
 	8. Don't log into GNOME
-	9. Switch over to the F2 virtual console: `Ctrl` + `Alt` + `Fn` + `F2`
+	9. Switch over to the F2 virtual console: `Ctrl` + `Alt` + `F2`
+		1. You might have to also press the `Fn` key if you're using an Apple keyboard.
 	10. Log in
 	11. Stop `gdm`
 	
