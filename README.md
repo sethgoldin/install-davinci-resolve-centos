@@ -125,7 +125,7 @@ These particular notes were originally worked out from installations to multiple
 		
 		```rpm -ivh mediaexpress-<version>.x86_64.rpm```
 		
-		1. The installer might tell you you need `libGLU.so.1`, so install:
+		1. The installer might tell you that you need `libGLU.so.1`, so install:
 				
 			```sudo yum install libGLU```
 		
