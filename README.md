@@ -112,13 +112,17 @@ These particular notes were originally worked out from installations to multiple
 	6. Change permissions on the files so that you can execute them:
 	
 		```chmod 755 desktopvideo-<version>.<architecture>.rpm```
+		
 		```chmod 755 desktopvideo-gui<version>.<architecture>.rpm```
+		
 		```chmod 755 mediaexpress-<version>.<architecture>.rpm```
-	
+		
 	7. Install the latest Desktop Video driver, GUI, and Media Express. Type:
 
 		```rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
+
 		```rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
+		
 		```rpm -ivh mediaexpress-<version>.x86_64.rpm```
 		
 		1. The installer might tell you you need `libGLU.so.1`, so install:
