@@ -121,9 +121,9 @@ These particular notes were originally worked out from installations to multiple
 		```rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
 		```rpm -ivh mediaexpress-<version>.x86_64.rpm```
 		
-			1. The installer might tell you you need `libGLU.so.1`, so install:
+		1. The installer might tell you you need `libGLU.so.1`, so install:
 				
-				```sudo yum install libGLU```
+			```sudo yum install libGLU```
 		
 	8. After the installation completes, you should see the terminal prompt. Reboot.
 	9. After the machine has rebooted, open a Terminal shell again
