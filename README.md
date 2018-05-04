@@ -1,20 +1,21 @@
 # How to install DaVinci Resolve on CentOS
 
-This is a guide on how to install  DaVinci resolve on a generic, upstream build of CentOS. Because software is constantly changing, document is hosted on GitHub Pages so that changes can be made as necessary.
+This is a rough overview of how to install  DaVinci Resolve on CentOS. Though [Blackmagic Design distributes a build of CentOS](https://forum.blackmagicdesign.com/viewtopic.php?f=21&t=65447#p370722) that's pre-installed with DaVinci Resolve and some other required software, Blackmagic Design's build can't be used to create a bootable USB drive&mdash;[it can only be used to create a DVD](https://forum.blackmagicdesign.com/viewtopic.php?f=21&t=65447#p370722). Upstream builds of "generic" CentOS straight from [the CentOS project](https://www.centos.org/) suffer no such limitation.
 
-These particular instructions are tailored to an HP Z8 G4 workstation with a GTX 1080 Ti installed, but the information should be useful for other systems as well.
+Because software is constantly changing, [this document is hosted on GitHub Pages](https://github.com/sethgoldin/davinci-resolve-generic-centos). If you find something wrong or outdated, please do open a pull request. 
+
+These particular notes were originally worked out from installations to multiple HP Z8 G4 workstations with GTX 1080 Ti cards installed, but the information should be useful for other x86_64 systems as well.
 
 1. UEFI
-	1. Set to boot to USB drive first
-	<!-- I'm not sure if disabling secure boot is necessary. Need to test. -->
+	1. Set to boot to a USB drive first
 	2. [Disable Secure Boot](https://access.redhat.com/solutions/3421621)
 2. Install CentOS from USB
 	1. Include only GNOME Desktop
 	2. Set up DHCP
-	3. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once you have the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
+	3. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once system is installed with the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
 3. Reboot
 4. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order, so reboot, and you'll boot to the M.2 SSD with the fresh installation
-	1. Reboot and you'll boot to the M.2 SSD with the fresh installation
+	1. Reboot and you'll boot into the M.2 SSD with the fresh installation
 	2. Accept the CentOS license
 	3. You can then safely eject the USB installation disk
 5. Install CentOS updates
@@ -22,11 +23,13 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 	1. Install `gcc`
 	
 		```sudo yum install gcc```
+		
 	2. Install kernel headers
 	
 		```sudo yum install kernel-devel-<version>```
 		
-		Let bash automatically complete with the correct, current version.
+		Let bash automatically complete with the correct, current version,by hitting the `Tab` key.
+		
 	3. Download the driver from [NVIDIA's site](http://www.nvidia.com/drivers)
 	4. Blacklist the Nouveau driver:
 		
@@ -71,7 +74,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 	
 		```sudo service gdm stop```
 		
-		This might pop you back over to the F1 virtual console, where the GUI normally lives, not populated by a bunch of status indicators scattered across the screen. Pop back over to F2 again.
+		This might pop you back over to the F1 virtual console, where the GUI normally lives, now populated by a bunch of status indicators scattered across the screen. Pop back over to F2 again.
 		
 	12. Go to the `~/Downloads` folder, or wherever you put the NVIDIA driver
 	13. Change permissions on the driver so that it’s exectuable:
@@ -83,8 +86,9 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		```sudo ./<NVIDIA-Linux-x86_64-whateverversion>.run```
 			
 	15. Register the kernel module with DKMS, so that a new module can be built later if a different kernel is installed
-	16. Install the 32-bit compatibility libraries--better safe than sorry
+	16. Install the 32-bit compatibility libraries&mdash;better safe than sorry
 	17. Opt to have NVIDIA update the `xconfig` file
+	18. Reboot
 7. Download and install the latest DeckLink driver
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
 	2. You need to now become the root user. Type:
@@ -92,6 +96,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		```su -```
 		
 		When prompted, please enter your 'root' user's password.
+		
 	3. If you already have an older DeckLink driver installed, uninstall it:
 		
 		```rpm -qa | grep desktopvideo | xargs rpm -e```
@@ -102,7 +107,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 		
 	5. `cd` into the `rpm` folder, since this is CentOS
 	
-		```cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/yourarchitecture```
+		```cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/<yourarchitecture>```
 		
 	6. Change permissions on the files so that you can execute them:
 	
@@ -120,7 +125,7 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 				
 				```sudo yum install libGLU```
 		
-	8. After the installation completes, you should see the terminal prompt. Then, reboot the machine.
+	8. After the installation completes, you should see the terminal prompt. Reboot.
 	9. After the machine has rebooted, open a Terminal shell again
 	10. You need to now become the root user. Type:
 		
@@ -141,7 +146,8 @@ These particular instructions are tailored to an HP Z8 G4 workstation with a GTX
 
 		```su -```
 		
-		When prompted, please enter your 'root' user's password.
-	4. Resolve might not launch--if you run it via the command-line from `/opt/resolve/bin/`, you can see why it might not be able to launch. It might be complaining about `libpng12.so(1)`, so install:
+		When prompted, please enter your root user's password.
+		
+	4. Resolve might not launch--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. It might be complaining about `libpng12.so(1)`, so install:
 		
 		```sudo yum install libpng12```
