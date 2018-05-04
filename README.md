@@ -79,16 +79,16 @@ These particular notes were originally worked out from installations to multiple
 	12. Go to the `~/Downloads` folder, or wherever you put the NVIDIA driver
 	13. Change permissions on the driver so that it’s exectuable:
 		
-	```chmod 755 <NVIDIA-Linux-x86_64-whateverversion>.run```
+		```chmod 755 <NVIDIA-Linux-x86_64-whateverversion>.run```
 			
 	14. Run it:
 		
 		```sudo ./<NVIDIA-Linux-x86_64-whateverversion>.run```
 			
-	15. Register the kernel module with DKMS, so that a new module can be built later if a different kernel is installed
-	16. Install the 32-bit compatibility libraries&mdash;better safe than sorry
-	17. Opt to have NVIDIA update the `xconfig` file
-	18. Reboot
+		1. Register the kernel module with DKMS, so that a new module can be built later if a different kernel is installed
+		2. Install the 32-bit compatibility libraries&mdash;better safe than sorry
+		3. Opt to have NVIDIA update the `xconfig` file
+	15. Reboot
 7. Download and install the latest DeckLink driver
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
 	2. You need to now become the root user. Type:
