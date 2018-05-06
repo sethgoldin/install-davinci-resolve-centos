@@ -59,11 +59,11 @@ These particular notes were originally worked out from installations to multiple
 				
 	5. Install EPEL
 				
-			```sudo yum install epel-release.noarch```
+		```sudo yum install epel-release.noarch```
 			
 	6. Install DKMS
 				
-			```sudo yum install dkms```
+		```sudo yum install dkms```
 				
 	7. Reboot
 	8. Don't log into GNOME
