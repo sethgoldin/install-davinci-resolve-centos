@@ -24,6 +24,8 @@ These particular notes were originally worked out from installations to multiple
 	
 		```sudo yum install gcc```
 		
+		N.B you don't want to install "Development Tools" packages from the OS installation that might install a more modern version of `gcc`&mdash;then you'd have a version of `gcc` different than the one that was used to build the kernel you just installed, and you'd have to go set an environmental variable to change how the NVIDIA driver sees `gcc`. It gets messy. Just wait to install `gcc` from `yum` after the OS installation so that it matches whatever your kernel was compiled with.
+		
 	2. Install kernel headers
 	
 		```sudo yum install kernel-devel-<version>```
