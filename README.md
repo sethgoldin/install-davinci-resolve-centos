@@ -29,26 +29,38 @@ These particular notes were originally worked out from installations to multiple
 		```sudo yum install kmod-nvidia```
 	
 7. Download and install the latest DeckLink driver
-	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
-	2. You need to now become the root user. Type:
+	1. Install EPEL
+	
+		```sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm```
+	
+	2. Install DKMS
+		
+		```sudo yum install dkms```
+	
+	3. Install gcc
+	
+		```sudo yum install gcc```
+	
+	4. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
+	5. You need to now become the root user. Type:
 		
 		```su -```
 		
 		When prompted, please enter your 'root' user's password.
 		
-	3. If you already have an older DeckLink driver installed, uninstall it:
+	6. If you already have an older DeckLink driver installed, uninstall it:
 		
 		```rpm -qa | grep desktopvideo | xargs rpm -e```
 		
-	4. Uncompress the downloaded driver package. Type:
+	7. Uncompress the downloaded driver package. Type:
 		
 		```tar xvfz /path/to/downloaded/driver/location/Blackmagic_Desktop_Video_Linux_<driver_version>.tar.gz```
 		
-	5. `cd` into the `rpm` folder, since this is CentOS
+	8. `cd` into the `rpm` folder, since this is CentOS
 	
 		```cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/<yourarchitecture>```
 		
-	6. Change permissions on the files so that you can execute them:
+	9. Change permissions on the files so that you can execute them:
 	
 		```chmod 755 desktopvideo-<version>.<architecture>.rpm```
 		
@@ -56,7 +68,7 @@ These particular notes were originally worked out from installations to multiple
 		
 		```chmod 755 mediaexpress-<version>.<architecture>.rpm```
 		
-	7. Install the latest Desktop Video driver, GUI, and Media Express. Type:
+	10. Install the latest Desktop Video driver, GUI, and Media Express. Type:
 
 		```rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
 
@@ -68,19 +80,19 @@ These particular notes were originally worked out from installations to multiple
 				
 			```sudo yum install libGLU```
 		
-	8. After the installation completes, you should see the terminal prompt. Reboot.
-	9. After the machine has rebooted, open a Terminal shell again
-	10. You need to now become the root user. Type:
+	11. After the installation completes, you should see the terminal prompt. Reboot.
+	12. After the machine has rebooted, open a Terminal shell again
+	13. You need to now become the root user. Type:
 		
 		```su -```
 		
 		When prompted, please enter your 'root' user's password
 		
-	11. You might need to update the firmware on your DeckLink card. Type:
+	14. You might need to update the firmware on your DeckLink card. Type:
 		
 		```BlackmagicFirmwareUpdater update 0```
 		
-	12.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
+	15.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 	
 8. Install DaVinci Resolve
 	1. Download `DaVinci_Resolve_Studio_14.3_Linux.zip` (if you have a DaVinci Resolve license dongle) or `DaVinci_Resolve_14.3_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
