@@ -31,31 +31,29 @@ These particular notes were originally worked out from installations to multiple
 		Let bash automatically complete with the correct, current version,by hitting the `Tab` key.
 		
 	3. Download the driver from [NVIDIA's site](http://www.nvidia.com/drivers)
-	4. Blacklist the Nouveau driver:
+	4. Blacklist the Nouveau driver by creating a new GRUB configuration:
 		
-		1. Create a new GRUB configuration with the blacklisted Nouveau driver:
+		1. Edit `/etc/default/grub` Append the following to `GRUB_CMDLINE_LINUX`:	
 			
-			1. Edit `/etc/default/grub` Append the following to `GRUB_CMDLINE_LINUX`:	
+			```rd.driver.blacklist=nouveau nouveau.modeset=0```
 			
-				```rd.driver.blacklist=nouveau nouveau.modeset=0```
-			
-			2. The whole line should read:
+		2. The whole line should read:
 				
-				```GRUB_CMDLINE_LINUX=“crashkernel=auto rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet rd.driver.blacklist=nouveau nouveau.modeset=0”```
+			```GRUB_CMDLINE_LINUX=“crashkernel=auto rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet rd.driver.blacklist=nouveau nouveau.modeset=0”```
 			
-			3. Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
+		3. Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
 				
-				```blacklist nouveau```
+			```blacklist nouveau```
+		
+			```options nouveau modeset=0```
 			
-				```options nouveau modeset=0```
+		4. Back up and regenerate the kernel `initramfs`:
 				
-			4. Back up and regenerate the kernel `initramfs`:
-				
-				```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
+			```sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img```
 			
-				```sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)```
+			```sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)```
 			
-			4. Reboot
+		5. Reboot
 				
 	5. Install EPEL
 				
