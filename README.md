@@ -8,7 +8,7 @@ These particular notes were originally worked out from installations to multiple
 
 1. UEFI
 	1. Set to boot to a USB drive first
-	2. [Disable Secure Boot](https://access.redhat.com/solutions/3421621)
+	2. Disable Secure Boot
 2. Install CentOS from USB
 	1. Include only GNOME Desktop
 	2. Set up DHCP
@@ -22,7 +22,13 @@ These particular notes were originally worked out from installations to multiple
 6. Install NVIDIA driver
 	1. Install ELRepo
 	
-		```sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm```
+		1. Import the GPG key:
+		
+			```sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org```
+		
+		2. Install for CentOS 7:
+		
+			```sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm```
 		
 	2. Install `kmod-nvidia`:
 	
