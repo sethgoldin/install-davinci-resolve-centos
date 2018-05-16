@@ -118,6 +118,8 @@ These particular notes were originally worked out from installations to multiple
 		
 		When prompted, please enter your root user's password.
 	
-	4.	Navigate to the downloaded script and run it.
+	4.	Navigate to the downloaded script and run it:
 	
-	5. Resolve might not launch--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `yum`.
+		```./DaVinci_Resolve_Studio_<version>_Linux.sh```
+	
+	5. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `yum`.
