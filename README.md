@@ -4,23 +4,30 @@ Here are some notes on how to install  DaVinci Resolve on CentOS. Though Blackma
 
 Because software is constantly changing, [this document is hosted on GitHub Pages](https://github.com/sethgoldin/davinci-resolve-generic-centos). If you find something wrong or outdated, please do open a pull request. 
 
-These particular notes were originally worked out from installations to multiple HP Z8 G4 workstations with GTX 1080 Ti cards installed, but the information should be useful for other x86_64 systems as well.
+These particular notes were originally worked out from installations to multiple HP Z8 G4 workstations with single GTX 1080 Ti cards installed, but the information should be useful for other x86_64 systems as well.
 
 1. UEFI
 	1. Set to boot to a USB drive first
-	2. Disable Secure Boot
+	2. Disable Secure Boot and disable Legacy BIOS mode
 2. Install CentOS from USB
 	1. Include only GNOME Desktop
 	2. Set up DHCP
 	3. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once system is installed with the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
-3. Reboot
-4. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order, so reboot, and you'll boot to the M.2 SSD with the fresh installation
+3. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order, so reboot, and you'll boot to the M.2 SSD with the fresh installation
 	1. Reboot and you'll boot into the M.2 SSD with the fresh installation
 	2. Accept the CentOS license
 	3. You can then safely eject the USB installation disk
-5. Install CentOS updates
-6. Install NVIDIA driver
-	1. Install ELRepo
+4. Install CentOS updates and reboot
+5. Add kernel source, additional repositories, and [Dynamic Kernel Module Support](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support)
+	1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source)
+	
+		```sudo yum install kernel-devel```
+			
+	2. Install DKMS
+		
+		```sudo yum install dkms```
+		
+	3. Install ELRepo
 	
 		1. Import the GPG key:
 		
@@ -30,43 +37,42 @@ These particular notes were originally worked out from installations to multiple
 		
 			```sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm```
 		
-	2. Install `kmod-nvidia`:
-	
-		```sudo yum install kmod-nvidia```
-	
-7. Download and install the latest DeckLink driver
-	1. Install EPEL
+	4. Install EPEL
 	
 		```sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm```
-	
-	2. Install DKMS
 		
-		```sudo yum install dkms```
-	
-	3. Install gcc
+	5. Installing EPEL should have downloaded and installed `gcc`, but just in case, make sure:
 	
 		```sudo yum install gcc```
+
+6. Install NVIDIA driver from ElRepo:
 	
-	4. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
-	5. You need to now become the root user. Type:
+	```sudo yum install kmod-nvidia```
+	
+	Then, reboot.
+	
+7. Download and install the latest DeckLink driver
+
+	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
+	2. Become the `root` user:
 		
 		```su -```
 		
-		When prompted, please enter your 'root' user's password.
+		When prompted, enter your `root` user's password.
 		
-	6. If you already have an older DeckLink driver installed, uninstall it:
+	3. If you already have an older DeckLink driver installed, uninstall it:
 		
 		```rpm -qa | grep desktopvideo | xargs rpm -e```
 		
-	7. Uncompress the downloaded driver package. Type:
+	4. If GNOME didn't uncompress it for you already, uncompress the downloaded driver package:
 		
 		```tar xvfz /path/to/downloaded/driver/location/Blackmagic_Desktop_Video_Linux_<driver_version>.tar.gz```
 		
-	8. `cd` into the `rpm` folder, since this is CentOS
+	5. `cd` into the `rpm` folder, since this is CentOS
 	
 		```cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/<yourarchitecture>```
 		
-	9. Change permissions on the files so that you can execute them:
+	6. Change permissions on the files so that you can execute them:
 	
 		```chmod 755 desktopvideo-<version>.<architecture>.rpm```
 		
@@ -74,7 +80,7 @@ These particular notes were originally worked out from installations to multiple
 		
 		```chmod 755 mediaexpress-<version>.<architecture>.rpm```
 		
-	10. Install the latest Desktop Video driver, GUI, and Media Express. Type:
+	7. Install the latest Desktop Video driver, GUI, and Media Express. Type:
 
 		```rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
 
@@ -82,33 +88,38 @@ These particular notes were originally worked out from installations to multiple
 		
 		```rpm -ivh mediaexpress-<version>.x86_64.rpm```
 		
-		1. The installer might tell you that you need `libGLU.so.1`, so install:
+		1. The installer might fail and tell you that you need `libGLU.so.1`, so install `libGLU` and try again:
 				
 			```sudo yum install libGLU```
 		
-	11. After the installation completes, you should see the terminal prompt. Reboot.
-	12. After the machine has rebooted, open a Terminal shell again
-	13. You need to now become the root user. Type:
+	8. After the installation completes, you should see the terminal prompt. Reboot.
+	9. After the machine has rebooted, open a Terminal shell again
+	10. Become the `root` user again:
 		
 		```su -```
 		
-		When prompted, please enter your 'root' user's password
+		When prompted, please enter your `root` user's password
 		
-	14. You might need to update the firmware on your DeckLink card. Type:
+	11. You might need to update the firmware on your DeckLink card. Type:
 		
 		```BlackmagicFirmwareUpdater update 0```
 		
-	15.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
+	12.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 	
-8. Install DaVinci Resolve
-	1. Download `DaVinci_Resolve_Studio_14.3_Linux.zip` (if you have a DaVinci Resolve license dongle) or `DaVinci_Resolve_14.3_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
-	2. Open a Terminal shell
-	3. You need to now become the root user. Type:
+9. Install DaVinci Resolve
+	1. Download and extract `DaVinci_Resolve_Studio_14.3_Linux.zip` (if you have a DaVinci Resolve license dongle) or `DaVinci_Resolve_14.3_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
+	2. Install `libpng12`:
+	
+		```sudo yum install libpng12```
+		
+	3. Become the `root` user again. Type:
 
 		```su -```
 		
 		When prompted, please enter your root user's password.
-		
-	4. Resolve might not launch--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. It might be complaining about `libpng12.so(1)`, so install:
-		
-		```sudo yum install libpng12```
+	
+	4.	Navigate to the downloaded script and run it:
+	
+		```./DaVinci_Resolve_Studio_14.3_Linux.sh```
+	
+	5. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `yum`.
