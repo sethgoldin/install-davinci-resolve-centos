@@ -11,7 +11,7 @@ These particular notes were originally worked out from installations to multiple
 		1. Download [DVD ISO](https://www.centos.org/download/)
 		2. [Verify the download](https://wiki.centos.org/TipsAndTricks/sha256sum)
 		3. Download and use [Rufus](https://rufus.ie/) to create the bootable USB drive
-	2.On Mac or Linux:
+	2. On Mac or Linux:
 		1. Download [DVD ISO](https://www.centos.org/download/)
 		2. [Verify the download](https://wiki.centos.org/TipsAndTricks/sha256sum)
 		3. Use `dd` to create the bootable USB drive		
