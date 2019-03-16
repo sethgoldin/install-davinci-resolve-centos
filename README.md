@@ -101,24 +101,11 @@ These particular notes were originally worked out from installations to multiple
 		
 	11. You might need to update the firmware on your DeckLink card. Type:
 		
-		```BlackmagicFirmwareUpdater update 0```
+		```# BlackmagicFirmwareUpdater update 0```
 		
 	12.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 	
 9. Install DaVinci Resolve
-	1. Download and extract `DaVinci_Resolve_Studio_14.3_Linux.zip` (if you have a DaVinci Resolve license dongle) or `DaVinci_Resolve_14.3_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
-	2. Install `libpng12`:
-	
-		```sudo yum install libpng12```
-		
-	3. Become the `root` user again. Type:
-
-		```su -```
-		
-		When prompted, please enter your root user's password.
-	
-	4.	Navigate to the downloaded script and run it:
-	
-		```./DaVinci_Resolve_Studio_14.3_Linux.sh```
-	
-	5. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `yum`.
+	1. Download and extract `DaVinci_Resolve_Studio_15.3_Linux.zip` (if you have a DaVinci Resolve license dongle) or `DaVinci_Resolve_14.3_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
+	2. Double-click the `.run` file to use the GUI installer
+	3. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `yum`.
