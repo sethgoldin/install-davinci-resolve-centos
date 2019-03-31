@@ -30,7 +30,7 @@ These particular notes were originally worked out from installations to multiple
 5. Install CentOS updates and reboot
 6. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 
-	```$ sudo yum install kernel-devel```
+	```$ sudo yum install "kernel-devel-uname-r == $(uname -r)"```
 
 7. Install EPEL
 
