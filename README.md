@@ -21,7 +21,8 @@ These particular notes were originally worked out from installations to multiple
 3. Install CentOS from USB
 	1. Include only GNOME Desktop
 	2. Set up DHCP
-	3. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once system is installed with the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
+	3. Set password for `root` account and create just one administrator account
+	4. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once system is installed with the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
 4. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order, so reboot, and you'll boot to the M.2 SSD with the fresh installation
 	1. Reboot and you'll boot into the M.2 SSD with the fresh installation
 	2. Accept the CentOS license
@@ -29,7 +30,7 @@ These particular notes were originally worked out from installations to multiple
 5. Install CentOS updates and reboot
 6. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 
-	```$ sudo yum install kernel-devel```
+	```$ sudo yum install "kernel-devel-uname-r == $(uname -r)"```
 
 7. Install EPEL
 
