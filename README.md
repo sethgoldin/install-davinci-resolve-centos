@@ -241,4 +241,4 @@ These particular notes were originally worked out from installations to multiple
 
 				```tcp     0     0 0.0.0.0:5432     0.0.0.0:*     LISTEN```
 				
-	
+	1. If you're going to be performing serious work with PostgreSQL databases, make sure that you back up and optimize the databases regularly, which can be done [automatically](https://github.com/sethgoldin/davinci-resolve-postgresql-workflow-tools).
