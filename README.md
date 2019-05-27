@@ -133,7 +133,6 @@ These particular notes were originally worked out from installations to multiple
 		```
 		
 	1. Set up a static IP address
-	
 		1. Run either `$ ifconfig a` or `$ ip a`to view the name of the connected ethernet device.
 		1. `vi` into `/etc/sysconfig/network-scripts/ifcfg-<yourinterfacename>`.
 		1. Modify the specific parameters:
@@ -195,7 +194,7 @@ These particular notes were originally worked out from installations to multiple
 				```listen_addresses = '*'```
 				
 		1. Assign a default password of `DaVinci` to the `postgres` user account
-			1. Enter the `psql` shell"
+			1. Enter the `psql` shell:
 				
 				```# psql```
 				
