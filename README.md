@@ -132,7 +132,7 @@ These particular notes were originally worked out from installations to multiple
 		$ sudo systemctl start postgresql-9.5
 		```
 		
-	1. Set up a static IP address
+	1. Set up a static IP address:
 		1. Run either `$ ifconfig a` or `$ ip a`to view the name of the connected ethernet device.
 		1. `vi` into `/etc/sysconfig/network-scripts/ifcfg-<yourinterfacename>`.
 		1. Modify the specific parameters:
@@ -172,7 +172,7 @@ These particular notes were originally worked out from installations to multiple
 			
 				```$ sudo su - postgres```
 				
-			1. `cd` into `9.5` and then into `data`:
+			1. From `/var/lib/pgsql/`, `cd` into `/var/lib/pgsql/9.5/data`:
 			
 				```# cd 9.5/data/```
 				
@@ -182,7 +182,7 @@ These particular notes were originally worked out from installations to multiple
 			
 				```# cp pg_hba.conf pg_hba.conf.backup```
 				
-			1. `vi` into `pg_hba.conf` and [modify it so as to enable sharing](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7) by adding in this line to the very bottom of the file"
+			1. `vi` into `pg_hba.conf` and [modify it so as to enable sharing](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7) by adding in this line to the very bottom of the file:
 			
 				```host     all     all     <your workstation's static IP>/24     md5```
 			
@@ -207,7 +207,8 @@ These particular notes were originally worked out from installations to multiple
 			1. You can then exit from being the `postgres` superuser and get back to your regular user account by entering `exit`.
 		1. Disable and stop the default CentOS firewall:
 		
-			```$ sudo systemctl disable firewalld
+			```
+			$ sudo systemctl disable firewalld
 			$ sudo systemctl stop firewalld
 			```
 			
