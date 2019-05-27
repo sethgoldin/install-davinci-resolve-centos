@@ -184,7 +184,7 @@ These particular notes were originally worked out from installations to multiple
 				
 			1. `vi` into `pg_hba.conf` and [modify it so as to enable sharing](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7) by adding in this line to the very bottom of the file"
 			
-			```host     all     all     <your workstation's static IP>/24     md5```
+				```host     all     all     <your workstation's static IP>/24     md5```
 			
 		1. Modify `postgresql.conf` to allow incoming TCP/IP sockets:
 		
@@ -220,7 +220,8 @@ These particular notes were originally worked out from installations to multiple
 				
 			You should see:
 				
-				```postgres     5432/tcp     postgresql     # POSTGRES
+				```
+				postgres     5432/tcp     postgresql     # POSTGRES
 				postgres     5432/udp     postgresql     # POSTGRES
 				```
 			
