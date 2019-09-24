@@ -29,11 +29,11 @@ These particular notes were originally worked out from an installation to an HP 
 1. Install CentOS updates and reboot
 1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 
-	```$ sudo yum install "kernel-devel-uname-r == $(uname -r)"```
+	```$ sudo dnf install "kernel-devel-uname-r == $(uname -r)"```
 
 1. Install EPEL
 
-	```yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
+	```$sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
 
 1. Install DKMS
 	
