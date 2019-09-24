@@ -19,7 +19,7 @@ These particular notes were originally worked out from installations to multiple
 	1. Set to boot to a USB drive first
 	1. Disable Secure Boot and disable Legacy BIOS mode
 1. Install CentOS from USB
-	1. Include only GNOME Desktop
+	1. Software selection should be `Workstation` with only `GNOME Applications` checked.
 	1. Set up DHCP
 	1. Set password for `root` account and create just one administrator account
 	1. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once system is installed with the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
