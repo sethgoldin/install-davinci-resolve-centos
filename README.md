@@ -22,7 +22,6 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Software selection should be `Workstation` with only `GNOME Applications` checked.
 	1. Set up DHCP
 	1. Set password for `root` account and create just one administrator account
-	1. It's possible that the CentOS installer will not show a mouse or will display windows strangely. It might be necessary to install via the "simple graphical interface" under the "rescue" GRUB option. Later, once system is installed with the GUI up and running, you'll want to [set GNOME to start automatically at boot](https://www.rootusers.com/how-to-start-gui-in-centos-7-linux/).
 1. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order, so reboot, and you'll boot to the M.2 SSD with the fresh installation
 	1. Reboot and you'll boot into the M.2 SSD with the fresh installation
 	1. Accept the CentOS license
@@ -34,7 +33,7 @@ These particular notes were originally worked out from an installation to an HP 
 
 1. Install EPEL
 
-	```$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm```
+	```yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
 
 1. Install DKMS
 	
@@ -45,19 +44,57 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```$ sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org```
 		
-	1. Install for CentOS 7:
+	1. Install for CentOS 8:
 	
-		```$ sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm```
+		```$ sudo yum install https://www.elrepo.org/elrepo-release-8.0-2.el8.elrepo.noarch.rpm```
 
-1. Installing EPEL should have downloaded and installed `gcc`, but just in case, make sure:
+1. Install NVIDIA driver
 
-	```$ sudo yum install gcc```
-
-1. Install NVIDIA driver from ElRepo:
+	1. Download [430.50 from NVIDIA's website](https://www.nvidia.com/Download/driverResults.aspx/151568/en-us).
 	
-	```$ sudo yum install kmod-nvidia-390xx.x86_64```
+	1. Switch to a VST by hitting `Ctrl` + `Alt` + `F3`. Log in.
 	
-	Then, reboot.
+	1. Install the development tools:
+	
+		```$ sudo dnf groupinstall "Development Tools"```
+		
+	1. Switch to `su` if you haven't already:
+	
+		```$ su -```
+		
+	1. Permanently blacklist the `nouveau` driver:
+	
+		```# grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) nouveau.modeset=0"```
+	
+	1. Reboot:
+	
+		``` # reboot```
+		
+	1. At the GUI login screen, don't log in. Instead, switch directly to the VST by pressing `Ctrl` + `Alt` + `F3`. Log into the admin account in the VST, and then become `su` with `$ su -`.
+	
+	1. Stop the Xorg server entirely by running:
+	
+		```# systemctl isolate multi-user.target```
+		
+	1. Log in as the admin user again, and then again become `su`.
+	
+	1. Navigate to whereever you downloaded the NVIDIA `.run` file, perhaps in `/home/yourusername/Downloads/`:
+	
+		```# cd /home/yourusername/Downloads```
+		
+	1. Run the NVIDIA installer:
+	
+		1. ```# bash NVIDIA-Linux-x86_64-430.50.run
+		
+		1. Register it with DKMS: `Yes`
+		
+		1. Include the 32-bit compatibility libraries, just in case they might be necessary somewhere. Better safe than sorry: `Yes`
+		
+		1. Do run the `nvidia-xconfig` utility to automatically update your X configuration file so that the NVIDIA X driver will be used when you restart X: `Yes`
+		
+		1. Reboot:
+		
+			```# reboot```
 	
 1. Download and install the latest DeckLink driver
 
