@@ -60,8 +60,10 @@ These particular notes were originally worked out from an installation to an HP 
 		
 	1. Back up and rebuild your `initramfs`:
 
-		```# mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
-		# dracut -f```
+		```
+		# mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+		# dracut -f
+		```
 		
 	1. Change the default runlevel:
 	
