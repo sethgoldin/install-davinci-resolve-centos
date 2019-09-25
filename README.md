@@ -27,6 +27,17 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Accept the CentOS license
 	1. You can then safely eject the USB installation disk
 1. Install CentOS updates and reboot
+
+1. Install RPM Fusion
+
+	```sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm```
+	
+1. Install NVIDIA driver
+
+	1. Option 1: RPM Fusion -- nope, broken
+
+	1. Option 2: ELRepo -- nope, broken
+
 1. Prepare for the NVIDIA driver
 
 	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/) and place it in `root`'s home directory.
