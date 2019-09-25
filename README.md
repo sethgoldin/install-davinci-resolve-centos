@@ -33,7 +33,7 @@ These particular notes were originally worked out from an installation to an HP 
 
 1. Install EPEL
 
-	```$sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
+	```$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
 
 1. Install DKMS
 	
