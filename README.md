@@ -43,6 +43,8 @@ These particular notes were originally worked out from an installation to an HP 
 
 	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/).
 	
+	1. ```sudo dnf groupinstall "Development Tools"```
+	
 	1. ```# /usr/sbin/grubby --update-kernel=ALL --remove-args='nomodeset' --args='rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1' &>/dev/null```
 	
 	1. ```# sed -i -e 's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 /g' /etc/default/grub```
