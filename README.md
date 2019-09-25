@@ -64,7 +64,28 @@ These particular notes were originally worked out from an installation to an HP 
 		
 	1. Permanently blacklist the `nouveau` driver:
 	
-		```# grub2-editenv - set "$(grub2-editenv - list | grep kernelopts) nouveau.modeset=0"```
+		1. Edit /etc/default/grub. Append the following  to “GRUB_CMDLINE_LINUX”
+rd.driver.blacklist=nouveau nouveau.modeset=0
+
+Generate a new grub configuration to include the above changes.
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+Edit/create /etc/modprobe.d/blacklist.conf and append:
+blacklist nouveau
+
+Backup your old initramfs and then build a new one
+mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+dracut /boot/initramfs-$(uname -r).img $(uname -r)
+
+Reboot your machine
+
+If your machine doesn’t boot to a login prompt disconnect your monitor from the graphics card and plug directly into the onboard VGA port. Alternatively SSH directly into the machine.
+
+The NVIDIA installer will not run while X is running so switch to text mode:
+systemctl isolate multi-user.target
+
+Run the NVIDIA driver installer and enter yes to all options.
+sh NVIDIA-Linux-x86_64-*.run
 	
 	1. Reboot:
 	
