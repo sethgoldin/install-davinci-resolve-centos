@@ -53,8 +53,10 @@ These particular notes were originally worked out from an installation to an HP 
 
 	1. Install dependencies:
 	
-		```# dnf groupinstall "Workstation" "base-x" "Legacy X Window System Compatibility" "Development Tools"
-		# dnf install elfutils-libelf-devel "kernel-devel-uname-r == $(uname -r)"```
+		```
+		# dnf groupinstall "Workstation" "base-x" "Legacy X Window System Compatibility" "Development Tools"
+		# dnf install elfutils-libelf-devel "kernel-devel-uname-r == $(uname -r)"
+		```
 		
 	1. Back up and rebuild your `initramfs`:
 
