@@ -41,23 +41,45 @@ These particular notes were originally worked out from an installation to an HP 
 	
 1. Prepare for the NVIDIA driver
 
-	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/).
-	
-	1. ```sudo dnf groupinstall "Development Tools"```
-	
-	1. ```# /usr/sbin/grubby --update-kernel=ALL --remove-args='nomodeset' --args='rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1' &>/dev/null```
-	
-	1. ```# sed -i -e 's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 /g' /etc/default/grub```
-	
-	1. ```# sed -i -e 's/#WaylandEnable=.*/WaylandEnable=false/' /etc/gdm/custom.conf```
-	
-	1. Reboot: ```# reboot```
+	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/) and place it in `root`'s home directory.
 
-1. Install NVIDIA driver
-
-	1. Stop gdm entirely: ```# systemctl isolate multi-user.target```
+	1. Make the file executable:
 	
-	1. Run NVIDIA's `.run` file: ```# bash NVIDIA-Linux-x86_64-430.50.run```
+		```# chmod +x NVIDIA-$version.sh`
+		
+	1. Blacklist the nouveau module:
+	
+		```# echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist.conf```
+
+	1. Install dependencies (replace "Server with GUI" with "Workstation" for RHEL 8 Workstation):
+	
+		```# dnf groupinstall "Server with GUI" "base-x" "Legacy X Window System Compatibility" "Development Tools"
+		# dnf install elfutils-libelf-devel "kernel-devel-uname-r == $(uname -r)"```
+		
+	1. Back up and rebuild your `initramfs`:
+
+		```# mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+		# dracut -f```
+		
+	1. Change the default runlevel:
+	
+		```# systemctl set-default multi-user.target```
+		
+	1. Reboot the system:
+		
+		```# reboot```
+		
+From the command-line, log into `root` and then install the driver:
+
+	1. ```# ./NVIDIA-$version.run```
+
+	1. Test the new driver:
+	
+		```# systemctl isolate graphical.target```
+		
+	1. If the test is successful, correct your default runlevel:
+
+		```# systemctl set-default graphical.target```
 	
 1. Download and install the latest DeckLink driver
 
