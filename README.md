@@ -39,6 +39,7 @@ These particular notes were originally worked out from an installation to an HP 
 	
 	```$ sudo dnf install dkms```
 	
+# ELRepo doesn't have this for now
 1. Install ELRepo
 	1. Import the GPG key:
 		
