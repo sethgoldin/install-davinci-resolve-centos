@@ -45,15 +45,15 @@ These particular notes were originally worked out from an installation to an HP 
 
 	1. Make the file executable:
 	
-		```# chmod +x NVIDIA-$version.sh```
+		```# chmod +x NVIDIA-Linux-x86_64-430.50.run```
 		
 	1. Blacklist the nouveau module:
 	
 		```# echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist.conf```
 
-	1. Install dependencies (replace "Server with GUI" with "Workstation" for RHEL 8 Workstation):
+	1. Install dependencies:
 	
-		```# dnf groupinstall "Server with GUI" "base-x" "Legacy X Window System Compatibility" "Development Tools"
+		```# dnf groupinstall "Workstation" "base-x" "Legacy X Window System Compatibility" "Development Tools"
 		# dnf install elfutils-libelf-devel "kernel-devel-uname-r == $(uname -r)"```
 		
 	1. Back up and rebuild your `initramfs`:
@@ -71,7 +71,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 From the command-line, log into `root` and then install the driver:
 
-	1. ```# ./NVIDIA-$version.run```
+	1. ```# ./NVIDIA-Linux-x86_64-430.50.run```
 
 	1. Test the new driver:
 	
