@@ -37,7 +37,7 @@ These particular notes were originally worked out from an installation to an HP 
 
 1. Install DKMS
 	
-	```$ sudo yum install dkms```
+	```$ sudo dnf install dkms```
 	
 1. Install ELRepo
 	1. Import the GPG key:
