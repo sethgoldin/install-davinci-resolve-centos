@@ -39,84 +39,13 @@ These particular notes were originally worked out from an installation to an HP 
 	
 	```$ sudo dnf install dkms```
 	
-# ELRepo doesn't have this for now
-1. Install ELRepo
-	1. Import the GPG key:
-		
-		```$ sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org```
-		
-	1. Install for CentOS 8:
+1. Install nonfree repository from RPMFusion for CentOS 8:
 	
-		```$ sudo yum install https://www.elrepo.org/elrepo-release-8.0-2.el8.elrepo.noarch.rpm```
-
+	```$ sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm```
+	
 1. Install NVIDIA driver
 
-	1. Download [430.50 from NVIDIA's website](https://www.nvidia.com/Download/driverResults.aspx/151568/en-us).
-	
-	1. Switch to a VST by hitting `Ctrl` + `Alt` + `F3`. Log in.
-	
-	1. Install the development tools:
-	
-		```$ sudo dnf groupinstall "Development Tools"```
-		
-	1. Switch to `su` if you haven't already:
-	
-		```$ su -```
-		
-	1. Permanently blacklist the `nouveau` driver:
-	
-		1. Edit /etc/default/grub. Append the following  to “GRUB_CMDLINE_LINUX”
-rd.driver.blacklist=nouveau nouveau.modeset=0
-
-Generate a new grub configuration to include the above changes.
-grub2-mkconfig -o /boot/grub2/grub.cfg
-
-Edit/create /etc/modprobe.d/blacklist.conf and append:
-blacklist nouveau
-
-Backup your old initramfs and then build a new one
-mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
-dracut /boot/initramfs-$(uname -r).img $(uname -r)
-
-Reboot your machine
-
-If your machine doesn’t boot to a login prompt disconnect your monitor from the graphics card and plug directly into the onboard VGA port. Alternatively SSH directly into the machine.
-
-The NVIDIA installer will not run while X is running so switch to text mode:
-systemctl isolate multi-user.target
-
-Run the NVIDIA driver installer and enter yes to all options.
-sh NVIDIA-Linux-x86_64-*.run
-	
-	1. Reboot:
-	
-		``` # reboot```
-		
-	1. At the GUI login screen, don't log in. Instead, switch directly to the VST by pressing `Ctrl` + `Alt` + `F3`. Log into the admin account in the VST, and then become `su` with `$ su -`.
-	
-	1. Stop the Xorg server entirely by running:
-	
-		```# systemctl isolate multi-user.target```
-		
-	1. Log in as the admin user again, and then again become `su`.
-	
-	1. Navigate to whereever you downloaded the NVIDIA `.run` file, perhaps in `/home/yourusername/Downloads/`:
-	
-		```# cd /home/yourusername/Downloads```
-		
-	1. Run the NVIDIA installer:
-	
-		1. ```# bash NVIDIA-Linux-x86_64-430.50.run
-		
-		1. Register it with DKMS: `Yes`
-		
-		1. Include the 32-bit compatibility libraries, just in case they might be necessary somewhere. Better safe than sorry: `Yes`
-		
-		1. Do run the `nvidia-xconfig` utility to automatically update your X configuration file so that the NVIDIA X driver will be used when you restart X: `Yes`
-		
-		1. Reboot:
-		
-			```# reboot```
+	``````
 	
 1. Download and install the latest DeckLink driver
 
