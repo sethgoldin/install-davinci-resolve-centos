@@ -27,18 +27,6 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Accept the CentOS license
 	1. You can then safely eject the USB installation disk
 1. Install CentOS updates and reboot
-1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
-
-	```$ sudo dnf install "kernel-devel-uname-r == $(uname -r)"```
-
-1. Install EPEL
-
-	```$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
-
-1. Install DKMS
-	
-	```$ sudo dnf install dkms```
-	
 1. Prepare for the NVIDIA driver
 
 	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/) and place it in `root`'s home directory.
@@ -86,6 +74,20 @@ From the command-line, log into `root` and then install the driver:
 		```# systemctl set-default graphical.target```
 	
 1. Download and install the latest DeckLink driver
+
+	Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
+
+	```$ sudo dnf install "kernel-devel-uname-r == $(uname -r)"```
+
+	1. Install EPEL
+
+	```$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
+
+	1. Install DKMS
+	
+	1. ```$ sudo dnf install dkms```
+	
+	1. Reboot: ```$ sudo reboot```
 
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
 	1. Become the `root` user:
