@@ -45,7 +45,7 @@ These particular notes were originally worked out from an installation to an HP 
 
 	1. Make the file executable:
 	
-		```# chmod +x NVIDIA-$version.sh`
+		```# chmod +x NVIDIA-$version.sh```
 		
 	1. Blacklist the nouveau module:
 	
