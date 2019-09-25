@@ -39,13 +39,23 @@ These particular notes were originally worked out from an installation to an HP 
 	
 	```$ sudo dnf install dkms```
 	
-1. Install nonfree repository from RPMFusion for CentOS 8:
+1. Prepare for the NVIDIA driver
+
+	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/).
 	
-	```$ sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm```
+	1. ```# /usr/sbin/grubby --update-kernel=ALL --remove-args='nomodeset' --args='rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1' &>/dev/null```
 	
+	1. ```# sed -i -e 's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 /g' /etc/default/grub```
+	
+	1. ```# sed -i -e 's/#WaylandEnable=.*/WaylandEnable=false/' /etc/gdm/custom.conf```
+	
+	1. Reboot: ```# reboot```
+
 1. Install NVIDIA driver
 
-	``````
+	1. Stop gdm entirely: ```# systemctl isolate multi-user.target```
+	
+	1. Run NVIDIA's `.run` file: ```# bash NVIDIA-Linux-x86_64-430.50.run```
 	
 1. Download and install the latest DeckLink driver
 
