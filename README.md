@@ -82,6 +82,7 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Reboot:
 		
 		```# reboot```
+	1. Confirm that you're running the NVIDIA driver at any time by running `$ nvidia-smi`
 1. Download and install the latest DeckLink driver
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
 	1. Become the `root` user:
