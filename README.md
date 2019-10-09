@@ -37,7 +37,7 @@ These particular notes were originally worked out from an installation to an HP 
 	
 	```$ sudo yum install dkms```
 1. Prepare for the NVIDIA driver
-	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/) and place it in `root`'s home directory.
+	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/).
 	
 	1. Become the root user:
 		
@@ -67,7 +67,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```# reboot```
 
-1. From the command-line, log into `root` and then install the NVIDA driver:
+1. From the command-line, log into `root`, navigate to wherever you put the `.run` file, and then install the NVIDA driver:
 	
 	1. ```# ./NVIDIA-Linux-x86_64-430.50.run```
 		
@@ -78,17 +78,6 @@ These particular notes were originally worked out from an installation to an HP 
 	1. If the test is successful, correct your default runlevel:
 		
 		```# systemctl set-default graphical.target```
-	1. Reboot:
-		
-		```# reboot```
-	1. Switch to a virtual terminal and log into `root`.
-	1. Remove `nomodeset` from the kernel cmdline in `/etc/default/grub`.
-		1. `vim` into `/etc/default/grub`
-		1. Remove the `nomodeset` parameter
-		1. Write and close the file: `:wq`
-	1. Rebuild the `grub` configuration:
-		
-		```# grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg```
 	1. Reboot:
 		
 		```# reboot```
