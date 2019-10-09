@@ -28,20 +28,26 @@ These particular notes were originally worked out from an installation to an HP 
 	1. You can then safely eject the USB installation disk
 1. Install CentOS updates and reboot
 
-1. Install RPM Fusion
+1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 
-	```sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm```
+	```$ sudo yum install "kernel-devel-uname-r == $(uname -r)"```
+
+1. Install [EPEL](https://fedoraproject.org/wiki/EPEL)
+
+	```$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
+
+1. Install DKMS
 	
-1. Install NVIDIA driver
-
-	1. Option 1: RPM Fusion -- nope, broken
-
-	1. Option 2: ELRepo -- nope, broken
-
+	```$ sudo yum install dkms```
+	
 1. Prepare for the NVIDIA driver
 
 	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/) and place it in `root`'s home directory.
 
+	1.Become the root user:
+	
+		```$ su -```
+	
 	1. Make the file executable:
 	
 		```# chmod +x NVIDIA-Linux-x86_64-430.50.run```
@@ -72,9 +78,10 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```# reboot```
 		
-From the command-line, log into `root` and then install the driver:
+From the command-line, log into `root` and then install the NVIDA driver:
 
 	1. ```# ./NVIDIA-Linux-x86_64-430.50.run```
+		1. Be sure to install to DKMS
 
 	1. Test the new driver:
 	
@@ -83,6 +90,25 @@ From the command-line, log into `root` and then install the driver:
 	1. If the test is successful, correct your default runlevel:
 
 		```# systemctl set-default graphical.target```
+		
+	1. Reboot
+		
+		```# reboot```
+		
+	1. Switch to a virtual terminal and log into `root`.
+	
+	1. Remove `nomodeset` from the kernel cmdline in `/etc/default/grub`.
+		1. `vim` into `/etc/default/grub`
+		1. Remove `nomodeset`
+		1. Write and close the file: `:wq`
+	
+	1. Rebuild the grub configuration:
+		
+		```# grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg```
+		
+	1. Reboot:
+		
+		```# reboot```
 	
 1. Download and install the latest DeckLink driver
 
