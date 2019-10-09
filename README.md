@@ -121,7 +121,7 @@ These particular notes were originally worked out from an installation to an HP 
 	1. `vim` into `/etc/default/grub`
 	1. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"`, so that the whole line is:
 		
-		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"
+		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
 	1. Write and close: `:wq`
 	1. Rebuild the grub configuration again:
 	
