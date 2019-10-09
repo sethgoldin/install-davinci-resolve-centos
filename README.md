@@ -39,7 +39,7 @@ These particular notes were originally worked out from an installation to an HP 
 1. Prepare for the NVIDIA driver
 	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/) and place it in `root`'s home directory.
 	
-	1.Become the root user:
+	1. Become the root user:
 		
 		```$ su -```
 	1. Make the file executable:
