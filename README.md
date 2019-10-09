@@ -27,6 +27,7 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Accept the CentOS license
 	1. You can then safely eject the USB installation disk
 1. Install CentOS updates and reboot
+1. Take note of the IP address on the LAN, because you might need to SSH into the machine later.
 1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 	
 	```$ sudo yum install "kernel-devel-uname-r == $(uname -r)"```
@@ -113,6 +114,21 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```# BlackmagicFirmwareUpdater update 0```
 	1.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
+
+1. At this point, installing Desktop Video to DKMS will probably have "broken" the `grub` configuration again. If you try to log into the GUI, the screen will just go black. So we'll need to go rebuild the `grub` configuration again.
+	1. If you can get to a virtual console, log in. Otherwise, SSH into the `root` account from a different machine on the network.
+	1. `vim` into `/etc/default/grub`
+	1. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"`, so that the whole line is:
+		
+		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"
+	1. Write and close: `:wq`
+	1. Rebuild the grub configuration again:
+	
+		```# grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg```
+	1. Reboot:
+	
+		```# reboot```
+1. Now we should be totally ready for DaVinci Resolve.
 1. Install DaVinci Resolve
 	1. Download and extract `DaVinci_Resolve_Studio_16.0_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.0_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
 	1. Double-click the `.run` file to use the GUI installer
