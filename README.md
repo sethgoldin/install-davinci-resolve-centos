@@ -102,7 +102,7 @@ These particular notes were originally worked out from an installation to an HP 
 		1. ```# rpm -ivh mediaexpress-<version>.x86_64.rpm```
 			1. The installer might fail and tell you that you `mediaexpress` needs `libGLU.so.1`, so install `libGLU` and try again:
 			
-			```# yum install mesa-libGLU```
+			```# dnf install mesa-libGLU```
 	1. After the installation completes, you should see the terminal prompt. Reboot.
 	1. After the machine has rebooted, open a Terminal shell again
 	1. Become the `root` user again:
