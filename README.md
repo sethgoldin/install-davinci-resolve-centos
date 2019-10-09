@@ -67,7 +67,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```# reboot```
 
-From the command-line, log into `root` and then install the NVIDA driver:
+1. From the command-line, log into `root` and then install the NVIDA driver:
 	
 	1. ```# ./NVIDIA-Linux-x86_64-430.50.run```
 		
