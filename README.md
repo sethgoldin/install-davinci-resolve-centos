@@ -130,7 +130,7 @@ These particular notes were originally worked out from an installation to an HP 
 	
 		```# reboot```
 1. Now we should be totally ready for DaVinci Resolve.
-	1. N.B. If you didn't install `mesa-libGLU` for Media Express in 12.vi.c.a., Resolve definitely needs it, so make sure to install it:
+	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
 		
 		```$ sudo dnf install mesa-libGLU```
 1. Install DaVinci Resolve
