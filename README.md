@@ -24,26 +24,28 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Reboot and you'll boot into the M.2 SSD with the fresh installation
 	1. Accept the CentOS license
 	1. You can then safely eject the USB installation disk
-1. Install CentOS updates and reboot
+1. Install CentOS updates and reboot:
+	
+	```$ sudo dnf update --refresh```	
 1. Take note of the IP address on the LAN, because you might need to SSH into the machine later.
 1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 	
-	```$ sudo yum install "kernel-devel-uname-r == $(uname -r)"```
+	```$ sudo dnf install "kernel-devel-uname-r == $(uname -r)"```
 1. Install [EPEL](https://fedoraproject.org/wiki/EPEL)
 	
-	```$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
+	```$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm```
 1. Install DKMS
 	
-	```$ sudo yum install dkms```
+	```$ sudo dnf install dkms```
 1. Prepare for the NVIDIA driver
-	1. Download [the `.run` file for 430.50 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/151568/).
+	1. Download [the `.run` file for 440.31 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/153226/).
 	
 	1. Become the root user:
 		
 		```$ su -```
 	1. Make the file executable:
 		
-		```# chmod +x NVIDIA-Linux-x86_64-430.50.run```
+		```# chmod +x NVIDIA-Linux-x86_64-440.31.run```
 	1. Blacklist the nouveau module:
 		
 		```# echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist.conf```
@@ -68,7 +70,7 @@ These particular notes were originally worked out from an installation to an HP 
 
 1. From the command-line, log into `root`, navigate to wherever you put the `.run` file, and then install the NVIDA driver:
 	
-	1. ```# ./NVIDIA-Linux-x86_64-430.50.run```
+	1. ```# ./NVIDIA-Linux-x86_64-440.31.run```
 		
 		1. Be sure to install to DKMS
 	1. Test the new driver:
@@ -96,7 +98,7 @@ These particular notes were originally worked out from an installation to an HP 
 	1. `cd` into the `rpm` folder, since this is CentOS
 		
 		```# cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/<yourarchitecture>```
-	1. Install the latest Desktop Video driver, GUI, and Media Express. Type:
+	1. [OPTIONAL] Install the latest Desktop Video driver, GUI, and Media Express. Type:
 		1. ```# rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
 		1. ```# rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
 		1. ```# rpm -ivh mediaexpress-<version>.x86_64.rpm```
@@ -128,6 +130,9 @@ These particular notes were originally worked out from an installation to an HP 
 	
 		```# reboot```
 1. Now we should be totally ready for DaVinci Resolve.
+	1. N.B. If you didn't install `mesa-libGLU` for Media Express in 12.vi.c.a., Resolve definitely needs it, so make sure to install it:
+		
+		```$ sudo dnf install mesa-libGLU```
 1. Install DaVinci Resolve
 	1. Download and extract `DaVinci_Resolve_Studio_16.1.1_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.1.1_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
 	1. Double-click the `.run` file to use the GUI installer
