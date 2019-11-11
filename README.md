@@ -83,7 +83,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```# reboot```
 	1. Confirm that you're running the NVIDIA driver at any time by running `$ nvidia-smi`
-1. Download and install the latest DeckLink driver
+1. [OPTIONAL] Download and install the latest DeckLink driver
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
 	1. Become the `root` user:
 		
@@ -98,7 +98,7 @@ These particular notes were originally worked out from an installation to an HP 
 	1. `cd` into the `rpm` folder, since this is CentOS
 		
 		```# cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/<yourarchitecture>```
-	1. [OPTIONAL] Install the latest Desktop Video driver, GUI, and Media Express. Type:
+	1. Install the latest Desktop Video driver, GUI, and Media Express. Type:
 		1. ```# rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
 		1. ```# rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
 		1. ```# rpm -ivh mediaexpress-<version>.x86_64.rpm```
