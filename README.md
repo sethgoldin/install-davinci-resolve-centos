@@ -116,19 +116,20 @@ These particular notes were originally worked out from an installation to an HP 
 		```# BlackmagicFirmwareUpdater update 0```
 	1.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 
-1. At this point, installing Desktop Video to DKMS will probably have "broken" the `grub` configuration again. If you try to log into the GUI, the screen will just go black. So we'll need to go rebuild the `grub` configuration again.
+1. At this point, installing Desktop Video to DKMS might have "broken" the `grub` configuration again. If you try to log into the GUI, the screen will just go black. So we'll need to go rebuild the `grub` configuration again.
 	1. If you can get to a virtual console, log in. Otherwise, SSH into the `root` account from a different machine on the network.
-	1. `vim` into `/etc/default/grub`
-	1. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"`, so that the whole line is:
+		1. `vim` into `/etc/default/grub`
+		1. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"`, so that the whole line is:
 		
-		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
-	1. Write and close: `:wq`
-	1. Rebuild the grub configuration again:
+			```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
+		1. Write and close: `:wq`
+		1. Rebuild the grub configuration again:
 	
-		```# grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg```
-	1. Reboot:
+			```# grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg```
+		1. Reboot:
 	
-		```# reboot```
+			```# reboot```
+	1. Alternatively, you can just edit the `grub` configuration temporarily by hitting `e` when the `grub` menu pops up, removing `rhgb`, adding in `rd.driver.blacklist=nouveau`, and hitting `Ctrl-X` to boot, but this is only temporary for the one boot. To _permanently_ blacklist the `nouveau` driver, you'll have to rebuild the `grub` configuration by following the steps above.
 1. Now we should be totally ready for DaVinci Resolve.
 	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
 		
