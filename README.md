@@ -132,8 +132,9 @@ These particular notes were originally worked out from an installation to an HP 
 1. Now we should be totally ready for DaVinci Resolve.
 	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
 		
-		```$ sudo dnf install mesa-libGLU```
-	1. Then, reboot.	
+		1. `$ sudo dnf install mesa-libGLU`
+		
+		1. Then, reboot.	
 		
 1. Install DaVinci Resolve
 	1. Download and extract `DaVinci_Resolve_Studio_16.1.1_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.1.1_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
