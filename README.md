@@ -61,7 +61,7 @@ These particular notes were originally worked out from an installation to an HP 
 		# mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
 		# dracut -f
 		```
-	1. Change the default runlevel:
+	1. Change the default [`systemd` target](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-managing_services_with_systemd-targets):
 		
 		```# systemctl set-default multi-user.target```
 	1. Reboot the system:
@@ -76,7 +76,7 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Test the new driver:
 		
 		```# systemctl isolate graphical.target```
-	1. If the test is successful, correct your default runlevel:
+	1. If the test is successful, change your default `systemd` target back so that you boot straight to the GUI:
 		
 		```# systemctl set-default graphical.target```
 	1. Reboot:
