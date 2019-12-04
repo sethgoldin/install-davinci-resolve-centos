@@ -135,7 +135,11 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		1. `$ sudo dnf install mesa-libGLU`
 		
-		1. Then, reboot.	
+		1. Then, reboot.
+		
+1. [OPTIONAL] Install Java if you want to perform Photon validation of IMF packages:
+
+	```$ sudo dnf install java```
 		
 1. Install DaVinci Resolve
 	1. Download and extract `DaVinci_Resolve_Studio_16.1.1_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.1.1_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
