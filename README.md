@@ -1,6 +1,6 @@
 # How to install DaVinci Resolve on CentOS
 
-Here are some notes on how to install  DaVinci Resolve on CentOS 8.0. Because software is constantly changing, [this document is hosted on GitHub Pages](https://github.com/sethgoldin/install-davinci-resolve-centos). If you find something wrong or outdated, please do open a pull request.
+Here are some notes on how to install  DaVinci Resolve 16 on CentOS 8.0. Because software is constantly changing, [this document is hosted on GitHub Pages](https://github.com/sethgoldin/install-davinci-resolve-centos). If you find something wrong or outdated, please do open a pull request.
 
 These particular notes were originally worked out from an installation to an HP Z8 G4 workstation with a single GTX 1080 Ti card installed, but the information should be useful for other x86_64 systems as well.
 
@@ -142,6 +142,6 @@ These particular notes were originally worked out from an installation to an HP 
 	```$ sudo dnf install java```
 		
 1. Install DaVinci Resolve
-	1. Download and extract `DaVinci_Resolve_Studio_16.1.1_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.1.1_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
+	1. Download and extract `DaVinci_Resolve_Studio_16.1.2_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.1.2_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
 	1. Double-click the `.run` file to use the GUI installer
 	1. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `dnf`.
