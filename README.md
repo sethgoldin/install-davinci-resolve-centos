@@ -48,7 +48,11 @@ These particular notes were originally worked out from an installation to an HP 
 		```# chmod +x NVIDIA-Linux-x86_64-440.44.run```
 	1. Blacklist the nouveau module:
 		
-		```# echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist.conf```
+		Create a file at /usr/lib/modprobe.d/blacklist-nouveau.conf with the following contents:
+		```
+		blacklist nouveau
+		options nouveau modeset=0
+		```
 	1. Install dependencies:
 		
 		```
