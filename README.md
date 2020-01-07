@@ -49,6 +49,9 @@ These particular notes were originally worked out from an installation to an HP 
 	1. Blacklist the nouveau module:
 		
 		```# echo 'blacklist nouveau' >> /etc/modprobe.d/blacklist.conf```
+	1. Regenerate the kernel initramfs:
+	
+		```# dracut --force```
 	1. Install dependencies:
 		
 		```
