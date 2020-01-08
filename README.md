@@ -26,7 +26,10 @@ These particular notes were originally worked out from an installation to an HP 
 	1. You can then safely eject the USB installation disk
 1. Install CentOS updates and reboot:
 	
-	```$ sudo dnf update --refresh```	
+	```
+	$ sudo dnf update --refresh
+	$ sudo reboot
+	```	
 1. Take note of the IP address on the LAN, because you might need to SSH into the machine later.
 1. Install the [kernel source](https://wiki.centos.org/HowTos/I_need_the_Kernel_Source):
 	
