@@ -88,7 +88,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		1. Confirm that you're running the NVIDIA driver at any time by running `$ nvidia-smi`
 		
-1. At this point, the `grub` configuration will be "broken." If you were to reboot and to try to log into the GUI, the screen would just go completely black. To properly get into the GUI, you'll have to edit the `grub` configuration file temporarily, but this will only get you into the GUI once. To configure the `grub` configuration permanently, we'll have to modify and rebuilt the the `grub` configuration.
+1. At this point, the `grub` configuration will be "broken." If you were to reboot and to try to log into the GUI, the screen would just go completely black. To properly get into the GUI, you'll have to edit the `grub` configuration file temporarily, but this will only get you into the GUI once. To configure the `grub` configuration permanently, we'll have to modify and rebuild the the `grub` configuration.
 	1. Reboot, and when the `grub` menu pops up, hit the `e` key.
 	1. On the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"` so that the whole line is:
 		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
