@@ -90,7 +90,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 1. At this point, the `grub` configuration will be "broken." If you were to reboot and to try to log into the GUI, the screen would just go completely black. To properly get into the GUI, you'll have to edit the `grub` configuration file temporarily, but this will only get you into the GUI once. To configure the `grub` configuration permanently, we'll have to modify and rebuild the the `grub` configuration.
 	1. Reboot, and when the `grub` menu pops up, hit the `e` key.
-	1. On the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"` so that the whole line is:
+	1. On the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau` inside the quotation marks, so that the whole line is:
 		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
 	1. Hit `Ctrl-X` to boot.
 	1. Log into GNOME.
@@ -98,7 +98,7 @@ These particular notes were originally worked out from an installation to an HP 
 		
 		```$ su -```
 	1. Use `vim` or your text editor of choice to open `/etc/default/grub`.
-	1. Just as before when you edited the `grub` configuration _temporarily,_ now edit this file permanently. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau"`, so that the whole line is:
+	1. Just as before when you edited the `grub` configuration _temporarily,_ now edit this file permanently. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau` inside the quotation marks, so that the whole line is:
 		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
 	1. Save and close the file. [If using `vim`, write and close: `:wq`]
 	
@@ -131,7 +131,7 @@ These particular notes were originally worked out from an installation to an HP 
 		1. ```# rpm -ivh mediaexpress-<version>.x86_64.rpm```
 			1. The installer might fail and tell you that you `mediaexpress` needs `libGLU.so.1`, so install `libGLU` and try again:
 			
-			```# dnf install mesa-libGLU```
+				```# dnf install mesa-libGLU```
 	1. After the installation completes, you should see the terminal prompt. Reboot.
 	1. After the machine has rebooted, open a Terminal shell again
 	1. Become the `root` user again:
