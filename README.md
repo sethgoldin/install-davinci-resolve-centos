@@ -33,5 +33,5 @@ Costs:
 
 ## Instructions
 With all these caveats in mind, here are instructions for both major releases of CentOS:
-- [CentOS 7.7](centos-7.7)
-- [CentOS 8.1](centos-8.1)
+- [CentOS 7.7](centos-7.7.md)
+- [CentOS 8.1](centos-8.1.md)
