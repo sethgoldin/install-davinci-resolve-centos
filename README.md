@@ -35,3 +35,6 @@ Costs:
 With all these caveats in mind, here are instructions for both major releases of CentOS:
 - [CentOS 7.7](centos-7.7.md)
 - [CentOS 8.1](centos-8.1.md)
+
+## PostgreSQL
+If you'd like to set up your 7.7 workstation as a PostgreSQL server for other workstations, here are some notes. TK
