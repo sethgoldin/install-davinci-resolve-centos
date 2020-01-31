@@ -6,13 +6,14 @@ These particular notes were originally worked out from an installation to an HP 
 
 ## Choosing a major release of CentOS
 
-Resolve 16.1.2 works great on both CentOS 7.7 and 8.1, but each has its costs and benefits.
+Resolve 16.1.2 works great on both CentOS 7.7 and 8.1, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://access.redhat.com/solutions/401413) release to install.
 
 ### CentOS 7.7
 Benefits:
 - This is the most stable and best-supported platform:
 	- Third-party repositories are mature, with an established ecosystem, filled with many packages and good documentation
 	- [End-of-life is June 30, 2024](https://wiki.centos.org/FAQ/General#What_is_the_support_.27.27end_of_life.27.27_for_each_CentOS_release.3F). This is inherited from the [end of Maintenance Support 2 of RHEL 7](https://access.redhat.com/support/policy/updates/errata).
+
 Costs:
 - GNOME 2 is the default desktop environment, and it's quite old
 - Many packages can be quite old, so getting more up-to-date packages may depend on [third-party repositories](https://wiki.centos.org/AdditionalResources/Repositories)
@@ -22,7 +23,15 @@ Benefits:
 - Packages are newer and are distributed via the [AppStream infrastructure](https://www.freedesktop.org/wiki/Distributions/AppStream/)
 - GNOME 3 is the default desktop environment
 - Newer kernels provide better performance
+- End-of-life is May 2029. This is inherited from the [end of Maintenance Support 2 of RHEL 8](https://access.redhat.com/support/policy/updates/errata). 
+
 Costs:
 - [Desktop Video 11.4 does not work on 8.1](https://github.com/sethgoldin/install-davinci-resolve-centos/issues/25)
 	- Desktop Video 11.4 did indeed work on 8.0, so you could, in theory go source 8.0.1905 and deliberately avoid upgrading to 8.1, but this is _unsupported_ and inadvisable, unless you're [air gapping](https://en.wikipedia.org/wiki/Air_gap_(networking)) the workstation
 - CentOS 8 ships with Wayland, but [Wayland does not yet play nice with NVIDIA](https://wiki.gnome.org/Initiatives/Wayland/NVIDIA), so the legacy X environment must be used instead
+- Many packages available on 7 have not yet been released or tested on 8
+
+## Instructions
+With all these caveats in mind, here are instructions for both major releases of CentOS:
+- [CentOS 7.7](centos-7.7)
+- [CentOS 8.1](centos-8.1)
