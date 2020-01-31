@@ -2,11 +2,11 @@
 
 1. Create a bootable USB drive
 	1. On Windows:
-		1. Download [DVD ISO](https://www.centos.org/download/)
+		1. Download [DVD ISO](http://isoredirect.centos.org/centos/7/isos/x86_64/)
 		1. [Verify the download](https://wiki.centos.org/TipsAndTricks/sha256sum)
 		1. Download and use [Rufus](https://rufus.ie/) to create the bootable USB drive
 	1. On Mac or Linux:
-		1. Download [DVD ISO](https://www.centos.org/download/)
+		1. Download [DVD ISO](http://isoredirect.centos.org/centos/7/isos/x86_64/)
 		1. [Verify the download](https://wiki.centos.org/TipsAndTricks/sha256sum)
 		1. Use `dd` to create the bootable USB drive		
 1. UEFI settings
