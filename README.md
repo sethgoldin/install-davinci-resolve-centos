@@ -12,7 +12,7 @@ Resolve 16.1.2 works great on both CentOS 7.7 and 8.1, but each has its costs an
 Benefits:
 - This is the most stable and best-supported platform:
 	- Third-party repositories are mature, with an established ecosystem, filled with many packages and good documentation
-	- [End-of-life is June 30, 2024](https://wiki.centos.org/FAQ/General#What_is_the_support_.27.27end_of_life.27.27_for_each_CentOS_release.3F). This is inherited from the [end of Maintenance Support 2 of RHEL 7](https://access.redhat.com/support/policy/updates/errata).
+- [End-of-life is June 30, 2024](https://wiki.centos.org/FAQ/General#What_is_the_support_.27.27end_of_life.27.27_for_each_CentOS_release.3F). This is inherited from the [end of Maintenance Support 2 of RHEL 7](https://access.redhat.com/support/policy/updates/errata).
 
 Costs:
 - GNOME 2 is the default desktop environment, and it's quite old
