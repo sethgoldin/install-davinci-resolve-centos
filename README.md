@@ -18,6 +18,7 @@ Costs:
 - GNOME 2 is the default desktop environment, and it's quite old
 - Many packages can be quite old, so getting more up-to-date packages may depend on [third-party repositories](https://wiki.centos.org/AdditionalResources/Repositories)
 - Although kernels are [backported](https://access.redhat.com/security/updates/backporting) with security updates, they are quite old
+
 ### CentOS 8.1
 Benefits:
 - Packages are newer and are distributed via the [AppStream infrastructure](https://www.freedesktop.org/wiki/Distributions/AppStream/)
@@ -32,7 +33,7 @@ Costs:
 - Many packages available on 7 have not yet been released or tested on 8
 
 ## Instructions
-With all these caveats in mind, here are instructions for both major releases of CentOS:
+With all these costs and benefits in mind, here are instructions for both major releases of CentOS:
 - [CentOS 7.7](centos-7.7.md)
 - [CentOS 8.1](centos-8.1.md)
 
