@@ -114,6 +114,13 @@
 		
 	1.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 	
+1. [OPTIONAL] If you want to use your workstation as a PostgreSQL client for collaborative workflows, and the network is either air-gapped or has a trustworthy network-wide firewall, you'll want to disable the individual firewall on the workstation so that the east-west traffic between workstations will function properly: for bin locking, timeline locking, collaborative chat, etc.
+
+	```
+	$ sudo systemctl stop firewalld
+	$ sudo systemctl disable firewalld
+	```
+	
 1. Now we should be totally ready for DaVinci Resolve.
 	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
 		

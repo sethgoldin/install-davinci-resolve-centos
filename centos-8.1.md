@@ -115,6 +115,14 @@
 1. [OPTIONAL] Install Java if you want to perform Photon validation of IMF packages:
 
 	```$ sudo dnf install java```
+	
+	
+1. [OPTIONAL] If you want to use your workstation as a PostgreSQL client for collaborative workflows, and the network is either air-gapped or has a trustworthy network-wide firewall, you'll want to disable the individual firewall on the workstation so that the east-west traffic between workstations will function properly: for bin locking, timeline locking, collaborative chat, etc.
+
+	```
+	$ sudo systemctl stop firewalld
+	$ sudo systemctl disable firewalld
+	```
 		
 1. Install DaVinci Resolve
 	1. Download and extract `DaVinci_Resolve_Studio_16.1.2_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.1.2_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
