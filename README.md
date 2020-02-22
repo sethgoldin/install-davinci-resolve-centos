@@ -29,7 +29,7 @@ Benefits:
 Costs:
 - [Desktop Video 11.4 does not work on 8.1](https://github.com/sethgoldin/install-davinci-resolve-centos/issues/25)
 	- Desktop Video 11.4 did indeed work on 8.0, so you could, in theory go source 8.0.1905 and deliberately avoid upgrading to 8.1, but this is _unsupported_ and inadvisable, unless you're [air gapping](https://en.wikipedia.org/wiki/Air_gap_(networking)) the workstation
-	- Supposedly Desktop Video 11.5 works, but I have not verified this myself and this hasn't been verified by Blackmagic Design
+	- [Supposedly Desktop Video 11.5 works](https://github.com/sethgoldin/install-davinci-resolve-centos/issues/25#issuecomment-587211118), but I have not verified this myself and this hasn't been verified by Blackmagic Design
 - CentOS 8 ships with Wayland, but [Wayland does not yet play nice with NVIDIA](https://wiki.gnome.org/Initiatives/Wayland/NVIDIA), so the legacy X environment must be used instead
 - Many packages available on 7 have not yet been released or tested on 8
 
