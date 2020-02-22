@@ -36,14 +36,14 @@
 	
 	```$ sudo dnf install dkms```
 1. Prepare for the NVIDIA driver
-	1. Download [the `.run` file for 440.44 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/156086/en-us).
+	1. Download [the `.run` file for 440.59 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/156772/en-us).
 	
 	1. Become the root user:
 		
 		```$ su -```
 	1. Make the file executable:
 		
-		```# chmod +x NVIDIA-Linux-x86_64-440.44.run```
+		```# chmod +x NVIDIA-Linux-x86_64-440.59.run```
 	1. Blacklist the nouveau module:
 		
 		Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
@@ -72,7 +72,7 @@
 
 1. From the command-line, log into `root`, navigate to wherever you put the `.run` file, and then install the NVIDA driver:
 	
-	1. ```# ./NVIDIA-Linux-x86_64-440.44.run```
+	1. ```# ./NVIDIA-Linux-x86_64-440.59.run```
 		
 		1. Be sure to install to DKMS
 		1. Be sure to install the additional optional `libglvnd` libraries
