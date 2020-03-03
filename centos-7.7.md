@@ -57,7 +57,7 @@
 	
 	```$ sudo yum install kmod-nvidia.x86_64```
 	
-	The current version is `kmod-nvidia-440.59-1.el7_7.elrepo.x86_64`.
+	The current version is `kmod-nvidia-440.64-1.el7_7.elrepo.x86_64`.
 	
 	For good measure, you'll probably want the `yum` plugin as well:
 	
