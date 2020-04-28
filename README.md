@@ -6,7 +6,7 @@ These particular notes were originally worked out from an installation to an HP 
 
 ## Choosing a major release of CentOS
 
-Resolve 16.2 works great on both CentOS 7.7 and 8.1, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://access.redhat.com/solutions/401413) release to install.
+Resolve 16.2.1 works great on both CentOS 7.7 and 8.1, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://access.redhat.com/solutions/401413) release to install.
 
 ### CentOS 7.7
 Benefits:
