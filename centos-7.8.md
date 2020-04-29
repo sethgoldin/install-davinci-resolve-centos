@@ -125,7 +125,7 @@
 1. Now we should be totally ready for DaVinci Resolve.
 	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
 		
-		1. `$ sudo dnf install mesa-libGLU`
+		1. `$ sudo yum install mesa-libGLU`
 		
 		1. Then, reboot.
 	
