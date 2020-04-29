@@ -1,4 +1,4 @@
-# How to install DaVinci Resolve on CentOS 7.7
+# How to install DaVinci Resolve on CentOS 7.8
 
 1. Create a bootable USB drive
 	1. On Windows:
@@ -47,25 +47,26 @@
 		
 	1. Install for CentOS 7:
 	
-		```$ sudo yum install https://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm```
+		```$ sudo yum install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm```
 
 1. Installing EPEL should have downloaded and installed `gcc`, but just in case, make sure:
 
 	```$ sudo yum install gcc```
 
-1. Install NVIDIA driver from ElRepo:
+1. Install NVIDIA driver from ELRepo:
+	1. For good measure, you'll probably want the `yum` plugin for ELRepo first, just in case we're in between a release of RHEL and a release of CentOS:
 	
-	```$ sudo yum install kmod-nvidia.x86_64```
+		```$ sudo yum install yum-plugin-elrepo```
 	
-	The current version is `kmod-nvidia-440.64-1.el7_7.elrepo.x86_64`.
+	1. Then, install the NVIDIA driver:
 	
-	For good measure, you'll probably want the `yum` plugin as well:
+		```$ sudo yum install kmod-nvidia.x86_64```
 	
-	```sudo yum install yum-plugin-elrepo```
+		The current version is `440.82-1.el7_8.elrepo`.
+		
+	1. Then, reboot:
 	
-	Then, reboot:
-	
-	```$ sudo reboot```
+		```$ sudo reboot```
 	
 1. [OPTIONAL] Download and install the latest DeckLink driver
 
@@ -124,7 +125,7 @@
 1. Now we should be totally ready for DaVinci Resolve.
 	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
 		
-		1. `$ sudo dnf install mesa-libGLU`
+		1. `$ sudo yum install mesa-libGLU`
 		
 		1. Then, reboot.
 	
