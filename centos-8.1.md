@@ -8,7 +8,7 @@
 	1. On Mac or Linux:
 		1. Download [DVD ISO](https://www.centos.org/download/)
 		1. [Verify the download](https://wiki.centos.org/TipsAndTricks/sha256sum)
-		1. Use `dd` to create the bootable USB drive		
+		1. [Use `dd` to create the bootable USB drive](https://wiki.centos.org/HowTos/InstallFromUSBkey)
 1. UEFI settings
 	1. Set to boot to a USB drive first
 	1. Disable Secure Boot and disable Legacy BIOS mode
