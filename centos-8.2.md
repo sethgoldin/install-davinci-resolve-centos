@@ -1,4 +1,4 @@
-# How to install DaVinci Resolve on CentOS 8.1
+# How to install DaVinci Resolve on CentOS 8.2
 
 1. Create a bootable USB drive
 	1. On Windows:
