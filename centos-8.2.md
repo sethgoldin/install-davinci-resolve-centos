@@ -35,75 +35,80 @@
 1. Install DKMS
 	
 	```$ sudo dnf install dkms```
-1. Prepare for the NVIDIA driver
-	1. Download [the `.run` file for 440.64 from NVIDIA's site](https://www.nvidia.com/Download/driverResults.aspx/157462/en-us).
+1. Install ELRepo
+	1. Import the GPG key:
+		
+		```$ sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org```
+		
+	1. Install for CentOS 8:
 	
-	1. Become the root user:
+		```$ sudo dnf install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm```
+
+1. Installing EPEL should have downloaded and installed `gcc`, but just in case, make sure:
+
+	```$ sudo dnf install gcc```
+
+1. Install NVIDIA driver from ELRepo:
+	1. For good measure, you'll probably want the `yum` plugin for ELRepo first, just in case we're in between a release of RHEL and a release of CentOS:
+	
+		```$ sudo dnf install yum-plugin-elrepo```
+	
+	1. Then, install the NVIDIA driver:
+	
+		```$ sudo dnf install kmod-nvidia.x86_64```
+	
+		The current version is `450.57-1.el8_2.elrepo`.
+		
+	1. Then, reboot:
+	
+		```$ sudo reboot```
+		
+1. [OPTIONAL] Download and install the latest DeckLink driver
+
+	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
+	1. Become the `root` user:
 		
 		```$ su -```
-	1. Make the file executable:
 		
-		```# chmod +x NVIDIA-Linux-x86_64-440.64.run```
-	1. Blacklist the nouveau module:
+		When prompted, enter your `root` user's password.
 		
-		Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
-		```
-		blacklist nouveau
-		options nouveau modeset=0
-		```
-	1. Install dependencies:
+	1. If you already have an older DeckLink driver installed, uninstall it:
 		
-		```
-		# dnf groupinstall "Workstation" "base-x" "Legacy X Window System Compatibility" "Development Tools"
-		# dnf install elfutils-libelf-devel "kernel-devel-uname-r == $(uname -r)"
-		```
-	1. Back up and rebuild your `initramfs`:
+		```# rpm -qa | grep desktopvideo | xargs rpm -e```
 		
-		```
-		# mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
-		# dracut -f
-		```
-	1. Change the default [`systemd` target](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-managing_services_with_systemd-targets):
+	1. If GNOME didn't uncompress it for you already, uncompress the downloaded driver package:
 		
-		```# systemctl set-default multi-user.target```
-	1. Reboot the system:
+		```# tar xvfz /path/to/downloaded/driver/location/Blackmagic_Desktop_Video_Linux_<driver_version>.tar.gz```
 		
-		```# reboot```
+	1. `cd` into the `rpm` folder, since this is CentOS
+	
+		```# cd /Blackmagic_Desktop_Video_Linux_<driver_version>/rpm/<yourarchitecture>```
+		
+	1. Install the latest Desktop Video driver, GUI, and Media Express. Type:
 
-1. From the command-line, log into `root`, navigate to wherever you put the `.run` file, and then install the NVIDA driver:
-	
-	1. ```# ./NVIDIA-Linux-x86_64-440.64.run```
+		1. ```# rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
+
+		1. ```# rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
 		
-		1. Be sure to install to DKMS
-		1. Be sure to install the additional optional `libglvnd` libraries
-		1. Run the `nvidia-xconfig` utility to automatically update your X configuration file
-	1. Test the new driver:
+		1. ```# rpm -ivh mediaexpress-<version>.x86_64.rpm```
 		
-		```# systemctl isolate graphical.target```
-	1. If the test is successful, change your default `systemd` target back so that you boot straight to the GUI:
+			1. The installer might fail and tell you that you `mediaexpress` needs `libGLU.so.1`, so install `libGLU` and try again:
+				
+				```# yum install mesa-libGLU```
 		
-		```# systemctl set-default graphical.target```
+	1. After the installation completes, you should see the terminal prompt. Reboot.
+	1. After the machine has rebooted, open a Terminal shell again
+	1. Become the `root` user again:
 		
-		1. Confirm that you're running the NVIDIA driver at any time by running `$ nvidia-smi`
-	1. *Do not reboot yet!* At this point, even though the NVIDIA driver is successfully installed, the `grub` configuration is not yet properly configured. Before rebooting, we'll have to modify and rebuild the `grub` configuration.
-		1. Use `vim` or your text editor of choice to open `/etc/default/grub`.
-		1. For the `GRUB_CMDLINE_LINUX` line, remove `rhgb` and add `rd.driver.blacklist=nouveau` inside the quotation marks, so that the whole line is:
-		```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
-	1. Save and close the file. [If using `vim`, write and close: `:wq`]
-	
-	1. Rebuild the grub configuration again:
-	
-		```# grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg```
-	1. Reboot:
+		```$ su -```
 		
-		```# reboot```
-	1. Your `grub` configuration should now be properly configured, so after rebooting, `grub` should automatically take you to the GNOME login screen, and you'll be able to log into the GUI.
-	1. N.B. If for some reason you mistakenly forget to configure and rebuild the `grub` configuration before rebooting, you'll need to temporarily modify the `grub` configuration to get into the GUI at all.
-		1. At the `grub` screen, hit `e`.
-		1. Modify the the `GRUB_CMDLINE_LINUX` line to remove `rhgb` and add `rd.driver.blacklist=nouveau` inside the quotation marks, so that the whole line is:
-			```GRUB_CMDLINE_LINUX="crashkernel=auto resume=/dev/mapper/cl-swap rd.lvm.lv=cl/root rd.lvm.lv=cl/swap quiet rd.driver.blacklist=nouveau"```
-		1. Hit `Ctrl-X` to boot with this one-time `grub` configuration.
-		1. Be sure to configure and rebuild the `grub` configuration permanently as described in the steps above so that the default `grub` entry can log into the GUI automatically.	
+		When prompted, please enter your `root` user's password
+		
+	1. You might need to update the firmware on your DeckLink card. Type:
+		
+		```# BlackmagicFirmwareUpdater update 0```
+		
+	1.  If a firmware update was applied, reboot the machine after it completes. If no firmware update was required, a reboot is not necessary.
 
 1. Now we should be totally ready for DaVinci Resolve.
 	1. N.B. If you didn't already install `mesa-libGLU` for Media Express, Resolve definitely needs it, so make sure to install it:
