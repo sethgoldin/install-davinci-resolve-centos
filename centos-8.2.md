@@ -16,6 +16,7 @@
 	1. Software selection should be `Workstation` with only `GNOME Applications` checked.
 	1. Set up DHCP
 	1. Set password for `root` account and create just one administrator account
+	1. Especially with a GeForce card, it's possible that the default CentOS installer will not show the graphics correctly. It might be necessary to install via the ["basic graphics mode" from the Troubleshooting menu in the boot options](https://docs.centos.org/en-US/centos/install-guide/Trouble-x86/#_problems_with_booting_into_the_graphical_installation).
 1. CentOS's installation interacts with HP's UEFI in such a way as to change the boot order
 	1. Reboot to the fresh installation of CentOS
 	1. Accept the CentOS license
