@@ -50,9 +50,9 @@
 	```$ sudo dnf install gcc```
 
 1. Install NVIDIA driver from ELRepo:
-	1. Install the NVIDIA driver:
+	1. Install the NVIDIA driver as well as the X11 driver:
 	
-		```$ sudo dnf install kmod-nvidia.x86_64```
+		```$ sudo dnf install kmod-nvidia.x86_64 nvidia-x11-drv```
 	
 		The current version is `450.57-1.el8_2.elrepo`.
 		
