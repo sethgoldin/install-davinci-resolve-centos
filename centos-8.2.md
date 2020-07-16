@@ -72,11 +72,18 @@
 			WaylandEnable=false
 			DefaultSession=gnome-xorg.desktop
 			```
-
-	
+			
 	1. Then, reboot:
 	
 		```$ sudo reboot```
+	
+	1. For ELRepo's build of the 450.57 NVIDIA driver on CentOS 8.2, [there's a bug involving SELinux](https://elrepo.org/bugs/view.php?id=1022).
+		
+		1. After attempting to boot, you'll see an error saying "Something went wrong."
+		
+		1. Switch over to a non-graphical [virtual console](https://en.wikipedia.org/wiki/Virtual_console) and log in. For CentOS 8, could use `Ctrl` + `Alt` + `F2`.
+		
+		1. Navigate into the 
 		
 1. [OPTIONAL] Download and install the latest DeckLink driver
 
