@@ -49,11 +49,7 @@
 	```$ sudo dnf install gcc```
 
 1. Install NVIDIA driver from ELRepo:
-	1. For good measure, you'll probably want the `yum` plugin for ELRepo first, just in case we're in between a release of RHEL and a release of CentOS:
-	
-		```$ sudo dnf install yum-plugin-elrepo```
-	
-	1. Then, install the NVIDIA driver:
+	1. Install the NVIDIA driver:
 	
 		```$ sudo dnf install kmod-nvidia.x86_64```
 	
