@@ -55,7 +55,25 @@
 		```$ sudo dnf install kmod-nvidia.x86_64 nvidia-x11-drv```
 	
 		The current version is `450.57-1.el8_2.elrepo`.
+	
+	1. [Configure Xorg as the default GNOME session](https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/):
+		1. `vim` with `sudo` permissions into `/etc/gdm/custom.conf`:
 		
+			```$ sudo vim /etc/gdm/custom.conf```
+		
+		1. Uncomment the line `WaylandEnable=false` by removing the `#` at the beginning of the line.
+		
+		1. In the same `[daemon]` section, add in the line: `DefaultSession=gnome-xorg.desktop`
+		
+		1. The `[daemon]` section of the file should now read:
+		
+			```
+			[daemon]
+			WaylandEnable=false
+			DefaultSession=gnome-xorg.desktop
+			```
+
+	
 	1. Then, reboot:
 	
 		```$ sudo reboot```
