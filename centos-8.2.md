@@ -81,9 +81,47 @@
 		
 		1. After attempting to boot, you'll see an error saying "Something went wrong."
 		
-		1. Switch over to a non-graphical [virtual console](https://en.wikipedia.org/wiki/Virtual_console) and log in. For CentOS 8, could use `Ctrl` + `Alt` + `F2`.
+		1. Switch over to a non-graphical [virtual console](https://en.wikipedia.org/wiki/Virtual_console) and log in. For CentOS 8, you could use `Ctrl` + `Alt` + `F2`.
 		
-		1. Navigate into the 
+		1. Log into `root` in the virtual console.
+		
+		1. `cd` over into `/var/log/audit/`:
+		
+			```# cd /var/log/audit/```
+		
+		1. Create and load the SELinux module:
+			1. Create the `nvidialocal.te` and `nvidialocal.pp` files:
+		
+				```# grep gnome-session-c audit.log | audit2allow -M nvidialocal```
+			
+			1. Check `check nvidialocal.te`:
+			
+				```# cat nvidialocal.te```
+				
+				The shell output should look like:
+				
+				```
+				module nvidialocal 1.0;
+				
+				require {
+					type xserver_tmpfs_t;
+					type xdm_t;
+					class file map;
+				}
+				
+				#============= xdm_t ==============
+				allow xdm_t xserver_tmpfs_t:file map;
+				```
+				
+			1. Load the `.pp` file:
+				
+				```# semodule -i nvidialocal.pp```
+				
+			1. Reboot.
+			
+			1. N.B. There's an upstream fix in Fedora, so when it gets backported into RHEL and CentOS, you'll be able to uninstall this SELinux module:
+				```# semodule -r nvidialocal```
+
 		
 1. [OPTIONAL] Download and install the latest DeckLink driver
 
@@ -108,15 +146,13 @@
 		
 	1. Install the latest Desktop Video driver, GUI, and Media Express. Type:
 
-		1. ```# rpm -ivh desktopvideo-<driver_version>.x86_64.rpm```
+		1. ```# dnf install desktopvideo-<driver_version>.x86_64.rpm```
 
-		1. ```# rpm -ivh desktopvideo-gui-<driver_version>.x86_64.rpm```
+		1. ```# dnf install desktopvideo-gui-<driver_version>.x86_64.rpm```
 		
-		1. ```# rpm -ivh mediaexpress-<version>.x86_64.rpm```
+		1. ```# dnf install mediaexpress-<version>.x86_64.rpm```
 		
-			1. The installer might fail and tell you that you `mediaexpress` needs `libGLU.so.1`, so install `libGLU` and try again:
-				
-				```# yum install mesa-libGLU```
+			1. N.B. `dnf` should resolve dependencies and install `mesa-libGLU` for you.
 		
 	1. After the installation completes, you should see the terminal prompt. Reboot.
 	1. After the machine has rebooted, open a Terminal shell again
@@ -152,6 +188,6 @@
 	```
 		
 1. Install DaVinci Resolve
-	1. Download and extract `DaVinci_Resolve_Studio_16.2.1_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.2.1_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
+	1. Download and extract `DaVinci_Resolve_Studio_16.2.4_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.2.1_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
 	1. Double-click the `.run` file to use the GUI installer
 	1. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `dnf`.
