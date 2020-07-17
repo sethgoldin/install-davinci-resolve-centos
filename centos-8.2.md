@@ -119,7 +119,7 @@
 				
 			1. Reboot.
 			
-			1. N.B. There's an upstream fix in Fedora, so when it gets backported into RHEL and CentOS, you'll be able to uninstall this SELinux module:
+			1. N.B. There's an [upstream fix in Fedora](https://github.com/fedora-selinux/selinux-policy/pull/312), so when it gets backported into RHEL and CentOS, you'll be able to uninstall this SELinux module:
 				```# semodule -r nvidialocal```
 
 		
