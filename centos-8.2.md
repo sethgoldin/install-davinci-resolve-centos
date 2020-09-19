@@ -54,7 +54,7 @@
 	
 		```$ sudo dnf install kmod-nvidia.x86_64 nvidia-x11-drv```
 	
-		The current version is `450.57-1.el8_2.elrepo`.
+		The current version is `450.66-1.el8_2.elrepo`.
 	
 	1. [Configure Xorg as the default GNOME session](https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/):
 		1. `vim` with `sudo` permissions into `/etc/gdm/custom.conf`:
@@ -76,53 +76,7 @@
 	1. Then, reboot:
 	
 		```$ sudo reboot```
-	
-	1. For ELRepo's build of the 450.57 NVIDIA driver on CentOS 8.2, [there's a bug involving SELinux](https://elrepo.org/bugs/view.php?id=1022).
-		
-		1. After attempting to boot, you'll see an error saying "Something went wrong."
-		
-		1. Switch over to a non-graphical [virtual console](https://en.wikipedia.org/wiki/Virtual_console) and log in. For CentOS 8, you could use `Ctrl` + `Alt` + `F2`.
-		
-		1. Log into `root` in the virtual console.
-		
-		1. `cd` over into `/var/log/audit/`:
-		
-			```# cd /var/log/audit/```
-		
-		1. Create and load the SELinux module:
-			1. Create the `nvidialocal.te` and `nvidialocal.pp` files:
-		
-				```# grep gnome-session-c audit.log | audit2allow -M nvidialocal```
-			
-			1. Check `check nvidialocal.te`:
-			
-				```# cat nvidialocal.te```
-				
-				The shell output should look like:
-				
-				```
-				module nvidialocal 1.0;
-				
-				require {
-					type xserver_tmpfs_t;
-					type xdm_t;
-					class file map;
-				}
-				
-				#============= xdm_t ==============
-				allow xdm_t xserver_tmpfs_t:file map;
-				```
-				
-			1. Load the `.pp` file:
-				
-				```# semodule -i nvidialocal.pp```
-				
-			1. Reboot.
-			
-			1. N.B. There's an [upstream fix in Fedora](https://github.com/fedora-selinux/selinux-policy/pull/312), so when it gets backported into RHEL and CentOS, you'll be able to uninstall this SELinux module:
-				```# semodule -r nvidialocal```
 
-		
 1. [OPTIONAL] Download and install the latest DeckLink driver
 
 	1. Download the latest driver [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/capture-and-playback)
@@ -188,6 +142,6 @@
 	```
 		
 1. Install DaVinci Resolve
-	1. Download and extract `DaVinci_Resolve_Studio_16.2.4_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.2.4_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
+	1. Download and extract `DaVinci_Resolve_Studio_16.2.7_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.2.7_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
 	1. Double-click the `.run` file to use the GUI installer
 	1. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `dnf`.
