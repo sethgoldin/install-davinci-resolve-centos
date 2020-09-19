@@ -2,11 +2,11 @@
 
 Here are some notes on how to install  DaVinci Resolve 16 on CentOS Linux. Because software is constantly changing, [these notes are hosted on GitHub Pages](https://github.com/sethgoldin/install-davinci-resolve-centos). If you find something wrong or outdated, please do open a pull request.
 
-These particular notes were originally worked out from installations to an HP Z8 G4 workstations with single GTX 1080 Ti or RTX 2080 Ti cards installed, but the information should be useful for other systems running `x86_64` CPUs and NVIDIA GPUs.
+These particular notes were originally worked out from installations to HP Z8 G4 workstations with single GTX 1080 Ti or RTX 2080 Ti cards installed, but the information should be useful for other systems running `x86_64` CPUs and NVIDIA GPUs.
 
 ## Choosing a major release of CentOS
 
-Resolve 16.2.4 works great on both CentOS 7.8 and 8.2, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://access.redhat.com/solutions/401413) release to install.
+Resolve 16.2.7 works great on both CentOS 7.8 and 8.2, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://access.redhat.com/solutions/401413) release to install.
 
 ### CentOS 7.8
 Benefits:
