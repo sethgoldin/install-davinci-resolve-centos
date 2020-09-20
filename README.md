@@ -6,7 +6,7 @@ These particular notes were originally worked out from installations to HP Z8 G4
 
 ## Choosing a major release of CentOS
 
-Resolve 16.2.7 works great on both CentOS 7.8 and 8.2, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://access.redhat.com/solutions/401413) release to install.
+Resolve 16.2.7 works great on both CentOS 7.8 and 8.2, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://web.archive.org/web/20190805123840/https://access.redhat.com/solutions/401413) release to install.
 
 ### CentOS 7.8
 Benefits:
