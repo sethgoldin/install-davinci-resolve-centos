@@ -6,9 +6,9 @@ These particular notes were originally worked out from installations to HP Z8 G4
 
 ## Choosing a major release of CentOS
 
-Resolve 16.2.7 works great on both CentOS 7.8 and 8.2, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://web.archive.org/web/20190805123840/https://access.redhat.com/solutions/401413) release to install.
+Resolve 16.2.7 works great on both CentOS 7.9 and 8.2, but each has its costs and benefits. Carefully consider what you need for your system before deciding which [major](https://web.archive.org/web/20190805123840/https://access.redhat.com/solutions/401413) release to install.
 
-### CentOS 7.8
+### CentOS 7.9
 Benefits:
 - This is the most stable and best-supported platform:
 	- Third-party repositories are mature, with an established ecosystem, filled with many packages and good documentation
@@ -32,8 +32,8 @@ Costs:
 
 ## Instructions
 With all these costs and benefits in mind, here are instructions for both major releases of CentOS:
-- [CentOS 7.8](centos-7.8.md)
+- [CentOS 7.9](centos-7.9.md)
 - [CentOS 8.2](centos-8.2.md)
 
 ## PostgreSQL
-If you'd like to set up your 7.8 workstation as a PostgreSQL server for other workstations, you can adapt [these instructions for setting up an Intel NUC](https://medium.com/@sethgoldin/how-to-set-up-an-intel-nuc-as-a-postgresql-server-for-davinci-resolve-studio-workstations-b36dff0a1872).
+If you'd like to set up your 7.9 workstation as a PostgreSQL server for other workstations, you can adapt [these instructions for setting up an Intel NUC](https://medium.com/@sethgoldin/how-to-set-up-an-intel-nuc-as-a-postgresql-server-for-davinci-resolve-studio-workstations-b36dff0a1872).
