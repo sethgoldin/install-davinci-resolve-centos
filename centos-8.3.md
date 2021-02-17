@@ -1,4 +1,4 @@
-# How to install DaVinci Resolve on CentOS 8.2
+# How to install DaVinci Resolve on CentOS 8.3
 
 1. Create a bootable USB drive
 	1. On Windows:
@@ -54,7 +54,7 @@
 	
 		```$ sudo dnf install kmod-nvidia.x86_64 nvidia-x11-drv```
 	
-		The current version is `450.66-1.el8_2.elrepo`.
+		The current version is `460.39-1.el8_3.elrepo`.
 	
 	1. [Configure Xorg as the default GNOME session](https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/):
 		1. `vim` with `sudo` permissions into `/etc/gdm/custom.conf`:
@@ -142,6 +142,6 @@
 	```
 		
 1. Install DaVinci Resolve
-	1. Download and extract `DaVinci_Resolve_Studio_16.2.7_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.2.7_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
+	1. Download and extract `DaVinci_Resolve_Studio_16.2.8_Linux.zip` (if you have a DaVinci Resolve license dongle or key) or `DaVinci_Resolve_16.2.8_Linux.zip` [from the Blackmagic Design website](https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion).
 	1. Double-click the `.run` file to use the GUI installer
 	1. Resolve might not launch after the installation--if you run it via the command-line from `/opt/resolve/bin/`, you can look for clues as to why it might not be able to launch. If some program is missing, try figuring out what Resolve needs and install via `dnf`.

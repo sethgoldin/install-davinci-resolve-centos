@@ -1,4 +1,4 @@
-# How to install DaVinci Resolve on CentOS 7.8
+# How to install DaVinci Resolve on CentOS 7.9
 
 1. Create a bootable USB drive
 	1. On Windows:
@@ -62,7 +62,7 @@
 	
 		```$ sudo yum install kmod-nvidia.x86_64```
 	
-		The current version is `450.66-1.el7_8.elrepo`.
+		The current version is `450.80.02-1.el7_9.elrepo`.
 		
 	1. Then, reboot:
 	
